@@ -1,0 +1,634 @@
+{
+  "id": "013b261d",
+  "cfgVersion": 1,
+  "name": "timeline",
+  "files": {
+    "ad62907c": {
+      "id": "ad62907c",
+      "pid": "013b261d",
+      "name": "timeline.js",
+      "input": "js\\timeline\\js\\src\\timeline.js",
+      "customOutput": false,
+      "type": "Js",
+      "config": {
+        "autoCompile": true,
+        "uglify": true,
+        "mangle": true,
+        "sourcemaps": false
+      }
+    },
+    "4f40d33e": {
+      "id": "4f40d33e",
+      "pid": "013b261d",
+      "name": "styles.scss",
+      "input": "js\\timeline\\css\\src\\styles.scss",
+      "customOutput": false,
+      "type": "Scss",
+      "config": {
+        "autoCompile": true,
+        "lineNumbers": false,
+        "unixNewlines": false,
+        "sourcemaps": false,
+        "debug": false,
+        "compass": false,
+        "fullCompass": false,
+        "outputStyle": "expanded",
+        "autoprefixer": false
+      }
+    },
+    "28da2981": {
+      "id": "28da2981",
+      "pid": "013b261d",
+      "name": "styles.scss",
+      "input": "css\\src\\styles.scss",
+      "customOutput": false,
+      "type": "Scss",
+      "config": {
+        "autoCompile": true,
+        "lineNumbers": false,
+        "unixNewlines": false,
+        "sourcemaps": false,
+        "debug": false,
+        "compass": false,
+        "fullCompass": false,
+        "outputStyle": "expanded",
+        "autoprefixer": false
+      }
+    },
+    "a4c34f9e": {
+      "id": "a4c34f9e",
+      "pid": "013b261d",
+      "name": "timeline-doncaster.js",
+      "input": "data\\timeline-doncaster.js",
+      "customOutput": false,
+      "type": "Js",
+      "config": {
+        "autoCompile": false,
+        "uglify": true,
+        "mangle": true,
+        "sourcemaps": false
+      }
+    },
+    "29e6ee93": {
+      "id": "29e6ee93",
+      "pid": "013b261d",
+      "name": "timeline-full.js",
+      "input": "data\\timeline-full.js",
+      "customOutput": false,
+      "type": "Js",
+      "config": {
+        "autoCompile": false,
+        "uglify": true,
+        "mangle": true,
+        "sourcemaps": false
+      }
+    }
+  },
+  "imports": {
+    "62239295": {
+      "id": "62239295",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\_mixins.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    },
+    "bb774b57": {
+      "id": "bb774b57",
+      "pid": "013b261d",
+      "path": "js\\timeline\\js\\src\\rainbow.js",
+      "parents": [
+        "ad62907c"
+      ]
+    },
+    "15e7775b": {
+      "id": "15e7775b",
+      "pid": "013b261d",
+      "path": "js\\timeline\\js\\src\\mousewheel.js",
+      "parents": [
+        "ad62907c"
+      ]
+    },
+    "3dff2a03": {
+      "id": "3dff2a03",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\font-awesome.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    },
+    "8ca13c5f": {
+      "id": "8ca13c5f",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\_variables.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    },
+    "d11b1758": {
+      "id": "d11b1758",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\_path.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    },
+    "817b2d17": {
+      "id": "817b2d17",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\_core.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    },
+    "a120eb5b": {
+      "id": "a120eb5b",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\_larger.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    },
+    "10e9b955": {
+      "id": "10e9b955",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\_fixed-width.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    },
+    "3a13aedf": {
+      "id": "3a13aedf",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\_list.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    },
+    "48397cde": {
+      "id": "48397cde",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\_bordered-pulled.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    },
+    "f5d41e2e": {
+      "id": "f5d41e2e",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\_animated.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    },
+    "1cded334": {
+      "id": "1cded334",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\_rotated-flipped.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    },
+    "ff0010a1": {
+      "id": "ff0010a1",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\_stacked.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    },
+    "ca26f3be": {
+      "id": "ca26f3be",
+      "pid": "013b261d",
+      "path": "js\\timeline\\css\\src\\vendor\\font-awesome\\scss\\_icons.scss",
+      "parents": [
+        "4f40d33e"
+      ]
+    }
+  },
+  "images": {
+    "e3f746fa": {
+      "id": "e3f746fa",
+      "pid": "013b261d",
+      "path": "img\\fish.jpg",
+      "size": 8673,
+      "name": "fish.jpg",
+      "type": "Jpg",
+      "initialSize": 8673,
+      "status": "NOT_OPTIMIZED"
+    },
+    "50597b15": {
+      "id": "50597b15",
+      "pid": "013b261d",
+      "path": "img\\sample\\Send___Ripley_Kenneth_White_shop_sign-300x169.jpg",
+      "size": 24647,
+      "name": "Send___Ripley_Kenneth_White_shop_sign-300x169.jpg",
+      "type": "Jpg",
+      "initialSize": 24647,
+      "status": "NOT_OPTIMIZED"
+    },
+    "8a0aaf3e": {
+      "id": "8a0aaf3e",
+      "pid": "013b261d",
+      "path": "img\\sample\\Lightbox_Woking_Abbey_venetian_tyle.jpg",
+      "size": 100883,
+      "name": "Lightbox_Woking_Abbey_venetian_tyle.jpg",
+      "type": "Jpg",
+      "initialSize": 100883,
+      "status": "NOT_OPTIMIZED"
+    },
+    "9a0dfc3b": {
+      "id": "9a0dfc3b",
+      "pid": "013b261d",
+      "path": "img\\sample\\Box-hill006-PC_53_ALB2_42-300x199.jpg",
+      "size": 30289,
+      "name": "Box-hill006-PC_53_ALB2_42-300x199.jpg",
+      "type": "Jpg",
+      "initialSize": 30289,
+      "status": "NOT_OPTIMIZED"
+    },
+    "427a2be7": {
+      "id": "427a2be7",
+      "pid": "013b261d",
+      "path": "img\\sample\\Royal_Earlswood_Museum_James_Pullen__s_Fantasy_Barge-300x201.jpg",
+      "size": 21555,
+      "name": "Royal_Earlswood_Museum_James_Pullen__s_Fantasy_Barge-300x201.jpg",
+      "type": "Jpg",
+      "initialSize": 21555,
+      "status": "NOT_OPTIMIZED"
+    },
+    "e4259530": {
+      "id": "e4259530",
+      "pid": "013b261d",
+      "path": "img\\sample\\seale001-300x185.jpg",
+      "size": 26527,
+      "name": "seale001-300x185.jpg",
+      "type": "Jpg",
+      "initialSize": 26527,
+      "status": "NOT_OPTIMIZED"
+    },
+    "5a39aba9": {
+      "id": "5a39aba9",
+      "pid": "013b261d",
+      "path": "img\\sample\\435361.jpg",
+      "size": 57538,
+      "name": "435361.jpg",
+      "type": "Jpg",
+      "initialSize": 57538,
+      "status": "NOT_OPTIMIZED"
+    },
+    "1d06662e": {
+      "id": "1d06662e",
+      "pid": "013b261d",
+      "path": "img\\sample\\Royal_Earlswood_Museum_James_Pullen__s_Fantasy_Barge.jpg",
+      "size": 84822,
+      "name": "Royal_Earlswood_Museum_James_Pullen__s_Fantasy_Barge.jpg",
+      "type": "Jpg",
+      "initialSize": 84822,
+      "status": "NOT_OPTIMIZED"
+    },
+    "c053e1a2": {
+      "id": "c053e1a2",
+      "pid": "013b261d",
+      "path": "img\\sample\\Guildford-Tank-poster-small-191x300.jpg",
+      "size": 28958,
+      "name": "Guildford-Tank-poster-small-191x300.jpg",
+      "type": "Jpg",
+      "initialSize": 28958,
+      "status": "NOT_OPTIMIZED"
+    },
+    "af550b76": {
+      "id": "af550b76",
+      "pid": "013b261d",
+      "path": "img\\sample\\300_8969_1164c1.jpg",
+      "size": 60523,
+      "name": "300_8969_1164c1.jpg",
+      "type": "Jpg",
+      "initialSize": 60523,
+      "status": "NOT_OPTIMIZED"
+    },
+    "837f0af6": {
+      "id": "837f0af6",
+      "pid": "013b261d",
+      "path": "img\\sample\\Poster-image-Woking-1967-RWBR003-web-300x197.jpg",
+      "size": 24374,
+      "name": "Poster-image-Woking-1967-RWBR003-web-300x197.jpg",
+      "type": "Jpg",
+      "initialSize": 24374,
+      "status": "NOT_OPTIMIZED"
+    },
+    "5b749f22": {
+      "id": "5b749f22",
+      "pid": "013b261d",
+      "path": "img\\sample\\300_7828_2_165_031.jpg",
+      "size": 70752,
+      "name": "300_7828_2_165_031.jpg",
+      "type": "Jpg",
+      "initialSize": 70752,
+      "status": "NOT_OPTIMIZED"
+    },
+    "4ee0be3e": {
+      "id": "4ee0be3e",
+      "pid": "013b261d",
+      "path": "img\\sample\\435361-300x187.jpg",
+      "size": 17152,
+      "name": "435361-300x187.jpg",
+      "type": "Jpg",
+      "initialSize": 17152,
+      "status": "NOT_OPTIMIZED"
+    },
+    "05d2b7ee": {
+      "id": "05d2b7ee",
+      "pid": "013b261d",
+      "path": "img\\sample\\Brooklands_Museum_Napier_Raylton-300x199.jpg",
+      "size": 21081,
+      "name": "Brooklands_Museum_Napier_Raylton-300x199.jpg",
+      "type": "Jpg",
+      "initialSize": 21081,
+      "status": "NOT_OPTIMIZED"
+    },
+    "ee214e7d": {
+      "id": "ee214e7d",
+      "pid": "013b261d",
+      "path": "img\\sample\\Children-at-Rowledge-House-Hostel-1944-300x221.jpg",
+      "size": 30790,
+      "name": "Children-at-Rowledge-House-Hostel-1944-300x221.jpg",
+      "type": "Jpg",
+      "initialSize": 30790,
+      "status": "NOT_OPTIMIZED"
+    },
+    "baf043af": {
+      "id": "baf043af",
+      "pid": "013b261d",
+      "path": "img\\sample\\St-Martins-Church-2-300x261.jpg",
+      "size": 25729,
+      "name": "St-Martins-Church-2-300x261.jpg",
+      "type": "Jpg",
+      "initialSize": 25729,
+      "status": "NOT_OPTIMIZED"
+    },
+    "d99f37d0": {
+      "id": "d99f37d0",
+      "pid": "013b261d",
+      "path": "img\\sample\\Little-Holocaust-Survivors.jpg",
+      "size": 46309,
+      "name": "Little-Holocaust-Survivors.jpg",
+      "type": "Jpg",
+      "initialSize": 46309,
+      "status": "NOT_OPTIMIZED"
+    },
+    "d76edf2e": {
+      "id": "d76edf2e",
+      "pid": "013b261d",
+      "path": "img\\sample\\9043_1_41_1-small-ESP.jpg",
+      "size": 27412,
+      "name": "9043_1_41_1-small-ESP.jpg",
+      "type": "Jpg",
+      "initialSize": 27412,
+      "status": "NOT_OPTIMIZED"
+    },
+    "0b3bdb95": {
+      "id": "0b3bdb95",
+      "pid": "013b261d",
+      "path": "img\\sample\\Haslemere_Museum_Godfrey_Blount_textile.jpg",
+      "size": 69670,
+      "name": "Haslemere_Museum_Godfrey_Blount_textile.jpg",
+      "type": "Jpg",
+      "initialSize": 69670,
+      "status": "NOT_OPTIMIZED"
+    },
+    "55f12a2e": {
+      "id": "55f12a2e",
+      "pid": "013b261d",
+      "path": "img\\sample\\Alan-Turing.jpg",
+      "size": 38656,
+      "name": "Alan-Turing.jpg",
+      "type": "Jpg",
+      "initialSize": 38656,
+      "status": "NOT_OPTIMIZED"
+    },
+    "1e406546": {
+      "id": "1e406546",
+      "pid": "013b261d",
+      "path": "img\\sample\\Our-Homestead_Home-web.jpg",
+      "size": 52395,
+      "name": "Our-Homestead_Home-web.jpg",
+      "type": "Jpg",
+      "initialSize": 52395,
+      "status": "NOT_OPTIMIZED"
+    },
+    "0a8d9270": {
+      "id": "0a8d9270",
+      "pid": "013b261d",
+      "path": "img\\sample\\Laleham009-300x193.jpg",
+      "size": 18879,
+      "name": "Laleham009-300x193.jpg",
+      "type": "Jpg",
+      "initialSize": 18879,
+      "status": "NOT_OPTIMIZED"
+    },
+    "0f9f9eb8": {
+      "id": "0f9f9eb8",
+      "pid": "013b261d",
+      "path": "img\\sample\\RC-Sherriff-in-uniform-port-212x300.jpg",
+      "size": 12856,
+      "name": "RC-Sherriff-in-uniform-port-212x300.jpg",
+      "type": "Jpg",
+      "initialSize": 12856,
+      "status": "NOT_OPTIMIZED"
+    },
+    "532ba516": {
+      "id": "532ba516",
+      "pid": "013b261d",
+      "path": "img\\sample\\Watts_Gallery_Chapel_doors-245x300.jpg",
+      "size": 38277,
+      "name": "Watts_Gallery_Chapel_doors-245x300.jpg",
+      "type": "Jpg",
+      "initialSize": 38277,
+      "status": "NOT_OPTIMIZED"
+    },
+    "cc17a948": {
+      "id": "cc17a948",
+      "pid": "013b261d",
+      "path": "img\\sample\\Byfleet_montage_of_Brooklands_models.jpg",
+      "size": 49211,
+      "name": "Byfleet_montage_of_Brooklands_models.jpg",
+      "type": "Jpg",
+      "initialSize": 49211,
+      "status": "NOT_OPTIMIZED"
+    },
+    "384d7043": {
+      "id": "384d7043",
+      "pid": "013b261d",
+      "path": "img\\sample\\300_8877_2_3551.jpg",
+      "size": 56372,
+      "name": "300_8877_2_3551.jpg",
+      "type": "Jpg",
+      "initialSize": 56372,
+      "status": "NOT_OPTIMIZED"
+    },
+    "f99a9885": {
+      "id": "f99a9885",
+      "pid": "013b261d",
+      "path": "img\\sample\\Teachers-2-300x200.jpg",
+      "size": 19389,
+      "name": "Teachers-2-300x200.jpg",
+      "type": "Jpg",
+      "initialSize": 19389,
+      "status": "NOT_OPTIMIZED"
+    },
+    "7263c238": {
+      "id": "7263c238",
+      "pid": "013b261d",
+      "path": "img\\sample\\Brooklands_Museum_Hawker_Hurricane.jpg",
+      "size": 74128,
+      "name": "Brooklands_Museum_Hawker_Hurricane.jpg",
+      "type": "Jpg",
+      "initialSize": 74128,
+      "status": "NOT_OPTIMIZED"
+    },
+    "259c2dfb": {
+      "id": "259c2dfb",
+      "pid": "013b261d",
+      "path": "img\\sample\\godalmingmuseum250x150.jpg",
+      "size": 15195,
+      "name": "godalmingmuseum250x150.jpg",
+      "type": "Jpg",
+      "initialSize": 15195,
+      "status": "NOT_OPTIMIZED"
+    },
+    "8d002f35": {
+      "id": "8d002f35",
+      "pid": "013b261d",
+      "path": "img\\sample\\300_CC1101_3_29_0791.jpg",
+      "size": 56985,
+      "name": "300_CC1101_3_29_0791.jpg",
+      "type": "Jpg",
+      "initialSize": 56985,
+      "status": "NOT_OPTIMIZED"
+    },
+    "178dfa90": {
+      "id": "178dfa90",
+      "pid": "013b261d",
+      "path": "img\\sample\\300_CC1101_3_54_0111.jpg",
+      "size": 53390,
+      "name": "300_CC1101_3_54_0111.jpg",
+      "type": "Jpg",
+      "initialSize": 53390,
+      "status": "NOT_OPTIMIZED"
+    },
+    "083db5e3": {
+      "id": "083db5e3",
+      "pid": "013b261d",
+      "path": "img\\sample\\Cherstey_Museum_Bronze_of_Stephan_Langton_with_King_John_sig-300x278.jpg",
+      "size": 34994,
+      "name": "Cherstey_Museum_Bronze_of_Stephan_Langton_with_King_John_sig-300x278.jpg",
+      "type": "Jpg",
+      "initialSize": 34994,
+      "status": "NOT_OPTIMIZED"
+    },
+    "9e7b10e2": {
+      "id": "9e7b10e2",
+      "pid": "013b261d",
+      "path": "img\\sample\\Godalming_Museum_Gertrude_Jekyll__s_gladstone_bag-300x230.jpg",
+      "size": 18333,
+      "name": "Godalming_Museum_Gertrude_Jekyll__s_gladstone_bag-300x230.jpg",
+      "type": "Jpg",
+      "initialSize": 18333,
+      "status": "NOT_OPTIMIZED"
+    },
+    "881558c4": {
+      "id": "881558c4",
+      "pid": "013b261d",
+      "path": "img\\sample\\PANEL-5-IMAGE-2.jpg",
+      "size": 43142,
+      "name": "PANEL-5-IMAGE-2.jpg",
+      "type": "Jpg",
+      "initialSize": 43142,
+      "status": "NOT_OPTIMIZED"
+    },
+    "31cd14dc": {
+      "id": "31cd14dc",
+      "pid": "013b261d",
+      "path": "img\\sample\\Meadow-Platt-213x300.jpg",
+      "size": 32399,
+      "name": "Meadow-Platt-213x300.jpg",
+      "type": "Jpg",
+      "initialSize": 32399,
+      "status": "NOT_OPTIMIZED"
+    },
+    "fda4dabd": {
+      "id": "fda4dabd",
+      "pid": "013b261d",
+      "path": "img\\sample\\300_4348_2_029_0021.jpg",
+      "size": 41534,
+      "name": "300_4348_2_029_0021.jpg",
+      "type": "Jpg",
+      "initialSize": 41534,
+      "status": "NOT_OPTIMIZED"
+    },
+    "7192f41f": {
+      "id": "7192f41f",
+      "pid": "013b261d",
+      "path": "img\\sample\\Our-Homestead_Old-Homestead-web.jpg",
+      "size": 65975,
+      "name": "Our-Homestead_Old-Homestead-web.jpg",
+      "type": "Jpg",
+      "initialSize": 65975,
+      "status": "NOT_OPTIMIZED"
+    },
+    "5b954cdb": {
+      "id": "5b954cdb",
+      "pid": "013b261d",
+      "path": "img\\sample\\My-Garden-A-Smee-Cover-1of2-web-210x300.jpg",
+      "size": 23432,
+      "name": "My-Garden-A-Smee-Cover-1of2-web-210x300.jpg",
+      "type": "Jpg",
+      "initialSize": 23432,
+      "status": "NOT_OPTIMIZED"
+    },
+    "0c9c243e": {
+      "id": "0c9c243e",
+      "pid": "013b261d",
+      "path": "img\\sample\\Troy-300x192.jpg",
+      "size": 25618,
+      "name": "Troy-300x192.jpg",
+      "type": "Jpg",
+      "initialSize": 25618,
+      "status": "NOT_OPTIMIZED"
+    }
+  },
+  "config": {
+    "watch": true,
+    "liveRefresh": true,
+    "liveRefreshDelay": 0,
+    "filterPatterns": "vendor",
+    "useCustomServer": false,
+    "customServerUrl": "",
+    "cssPath": "../",
+    "jsPath": "../",
+    "htmlPath": "html/",
+    "minJsPath": "../",
+    "htmlExtension": ".html",
+    "cssPathType": "RELATIVE_FILEDIR",
+    "htmlPathType": "REPLACE_TYPE",
+    "jsPathType": "RELATIVE_FILEDIR",
+    "minJsPathType": "RELATIVE_FILEDIR",
+    "htmlTypes": "jade, haml, slim, markdown, md",
+    "cssTypes": "less, sass, stylus, scss, styl",
+    "jsTypes": "coffee, coffeescript, coffeescripts, ls, livescript, livescripts",
+    "cssPreprocessorPath": "",
+    "htmlPreprocessorPath": "",
+    "jsPreprocessorPath": "",
+    "minJsPreprocessorPath": "",
+    "autoprefixerBrowsers": "",
+    "ftpHost": "",
+    "ftpPort": "21",
+    "ftpRemotePath": "",
+    "ftpIgnorePreprocessorFiles": true,
+    "ftpType": "FTP",
+    "ftpExcludePatterns": "",
+    "ftpPassword": "",
+    "ftpUsername": ""
+  }
+}
