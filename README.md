@@ -32,7 +32,7 @@ Create "test.html" in the examples directory, containing the following markup:
 	  <script>
 		$('.timeline').timeline({
 			colorMode: 'rainbow',
-        		colors:['000000','000000'],
+        	colors:['000000','000000'],
 			timescales:[
 				{
 					start: 1900,
