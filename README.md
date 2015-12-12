@@ -15,8 +15,14 @@ Create "test.html" in the examples directory, containing the following markup:
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/styles.css"/>
     <style type="text/css">
-        html,body{height:100%;margin:0;padding:0;}
-        .timespan{border:none!important;}
+        html, body{
+			height:100%;
+			margin:0;
+			padding:0;
+		}
+    	.timespan{
+        	border:none!important;
+		}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="../js/timeline.min.js"></script>
@@ -26,7 +32,7 @@ Create "test.html" in the examples directory, containing the following markup:
 	  <script>
 		$('.timeline').timeline({
 			colorMode: 'rainbow',
-            colors:['000000','000000'],
+        		colors:['000000','000000'],
 			timescales:[
 				{
 					start: 1900,
