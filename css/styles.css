@@ -2831,6 +2831,7 @@ div.timeline .event:hover {
 }
 div.timeline .event h2 {
   cursor: pointer;
+  margin: 5px;
   text-shadow: 1px 1px 0px #000;
 }
 div.timeline .event h2, div.timeline .event div {

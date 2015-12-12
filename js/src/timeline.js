@@ -6,7 +6,6 @@
     $.fn.timeline = function(options){
         var _$me = $(this);
         var _$inner;
-        var _data = [];
         var _dragging = false;
         var _minDate;
         var _maxDate;
@@ -14,6 +13,7 @@
         var _scrollInterval;
         var settings = $.extend({
             colorMode: '',
+            data:[],
             monthNames:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
             onCreate: function(){},
             src: '',
@@ -111,6 +111,15 @@
             _$me.addClass('loading');
             _layout();
             
+            _debug(settings.data);
+            
+            if(settings.data)
+            {
+                $(settings.data).each(function(i,v){
+                    _addDataItem(v);         
+                });
+                _$me.removeClass('loading');
+            }
             $(settings.src).each(function(i,v){
                 setTimeout(function(){
                     _load(v);
@@ -431,15 +440,9 @@
                 dataType:'json',
                 success: function(data){
                     $(data).each(function(i,v){
-                        _addFeature({
-                            content:settings.templateEvent.replace('[title]',v.title).replace('[date]',_formatDateRange(v.date)).replace('[description]',v.description).replace(/\[link\]/g,v.link).replace('[image]',v.image?'<img src="'+v.image+'"/>':''),
-                            start:v.date.start,
-                            end:(v.date.end ? v.date.end : v.date.start),
-                            title:v.title,
-                            top: (10+(60 * Math.random()))+'%'
-                        }, 'event'+(true===v.keyEvent ? ' key-event' : '')+(v.image ? ' has-img' : ''));
+                        _addDataItem(v);
                     });
-                    _data = _data.concat(data);
+                    settings.data = settings.data.concat(data);
                     _onDataUpdate();
                     _$me.removeClass('loading');
                     if(callback!=undefined)
@@ -451,12 +454,26 @@
             })
         }
         /**
+         * Parse and add data
+         * @param {object} v
+         */
+        function _addDataItem(v)
+        {
+            _addFeature({
+                content:settings.templateEvent.replace('[title]',v.title).replace('[date]',_formatDateRange(v.date)).replace('[description]',v.description).replace(/\[link\]/g,v.link).replace('[image]',v.image?'<img src="'+v.image+'"/>':''),
+                start:v.date.start,
+                end:(v.date.end ? v.date.end : v.date.start),
+                title:v.title,
+                top: (10+(60 * Math.random()))+'%'
+            }, 'event'+(true===v.keyEvent ? ' key-event' : '')+(v.image ? ' has-img' : ''));
+        }
+        /**
          * Called when the data is updated
          * @returns {null}
          */
         function _onDataUpdate()
         {
-            _debug('Data updated. New data length: '+_data.length);
+            _debug('Data updated. New data length: '+settings.data.length);
         }
         /**
          * Drag
@@ -581,7 +598,7 @@
                         left:-1,
                         position:'fixed'
                     });
-                    $(_data).each(function(i, v){
+                    $(settings.data).each(function(i, v){
                         if(_dateWithinRange(v.date.start, $clone.data('data').start, $clone.data('data').end))
                         {
                             _addFeature({
