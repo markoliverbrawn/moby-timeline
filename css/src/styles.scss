@@ -81,7 +81,7 @@ div.timeline{
         height:100%;
         overflow:hidden;
         position:relative;
-    }   
+    }       
     .timespan, .period{
         cursor:ew-resize;
         height:100%;
@@ -96,16 +96,19 @@ div.timeline{
             position:absolute;
         }
     }
-	.eon{
+    .period{
+        background:rgba(#000, 0.1);
+    }
+	.eon, .level-1{
 		height:95%;
 	}
-	.era{
+	.era, .level-2{
 		height:90%;
 	}
-	.age{
+	.age, .level-3{
 		height:85%;
 	}
-	.epoch{
+	.epoch, .level-4{
 		height:80%;
 	}
     .scale{
@@ -126,15 +129,20 @@ div.timeline{
         }
     }
     .event{
-        background:$bg-event;
+        background:rgba(#fff,0.5);
+        border:1px solid rgba(#fff,1);
         border-radius:2em;
         cursor:pointer;
-        height:5px;
-        min-width:5px;
-        width:0;
+        height:10px;
+        min-width:10px;
+        width:10px;
         z-index:$z-features;
+        &:hover{
+            border-width:5px;
+        }
         h2{
             cursor:pointer;
+            text-shadow:1px 1px 0px #000;
         }
         h2,div{
             display:none;
@@ -142,11 +150,13 @@ div.timeline{
             width:$width-event;
         }
         &.key-event{
+            z-index: $z-key-feature;
             h2{
                 display:block;
             }
         }
         &.active{
+            background:$bg-event;
             z-index:$z-features-active;
             h2,div{
                 background:$bg-event;
@@ -154,7 +164,7 @@ div.timeline{
                 padding:$padding;
             }
             h2{
-                margin-top:$padding*4;
+                margin:$padding*4 16px 0 0;
                 position:relative;
                 &:before{
                     border:$padding*2 solid transparent;
@@ -176,11 +186,26 @@ div.timeline{
                     top:$padding;
                 }
             }
-            img{
-                float:right;
-                height:auto;
-                margin:0 0 $padding $padding;
-                width:50px;
+            div{
+                padding-top:0;
+                img{
+                    float:right;
+                    height:auto;
+                    margin:0 0 $padding $padding;
+                    width:50px;
+                }
+                span{
+                    display:block;
+                    margin-bottom:3px;
+                    &.date{
+                        opacity:0.8;
+                        &:before{
+                            @extend .fa;content:
+                            $fa-var-calendar;
+                            margin-right:5px;
+                        }
+                    }
+                }
             }
         }
     }
@@ -189,6 +214,7 @@ div.timeline{
             margin-bottom:-10px;
             transform-origin: top left;
             transform:rotate(-90deg);
+            white-space:nowrap;
         }
     }   
     .clone{

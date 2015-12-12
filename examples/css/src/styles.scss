@@ -1,20 +1,57 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,700italic,400italic);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
 
 html,body{height:100%;margin:0;padding:0;}
 
-
-
-// Examples homepage
 body{
+
     &.home{
-        *{box-sizing:border-box;font-family: 'Lato', sans-serif;}
-        &>*{height:100%;position:absolute;}
-        div{left:0;width:20%;}
-        iframe{border:none;right:0;width:80%;}
-        h1{font-size:1em;}
-        ul{display:none;margin-left:10px;padding-left:10px;}
+        background:#333;
+        font-family: 'Lato', sans-serif;
+        font-size:14px;
+        *{
+            box-sizing:border-box;
+            color:#fff;
+        }
+        &>*{
+            height:100%;
+            position:absolute;
+        }
+        div{
+            left:0;
+            width:20%;
+        }
+        iframe{
+            border:none;
+            right:0;
+            width:80%;
+        }
+        h1{
+            font-size:1em;
+            margin:0;
+        }
+        a{
+            display:block;
+            padding:10px;
+        }
+        ul{
+            background:lighten(#333, 10%);
+            display:none;
+            list-style:none;
+            margin:0px;
+            padding:0px;
+        }
+        li{
+            border-bottom:1px solid lighten(#333, 20%);
+            padding:10px;
+            &:last-child{
+                border:none;
+            }
+        }
     }
+
     &.example{
         font-family: 'Lato', sans-serif;
     }
+
 }

@@ -63,9 +63,19 @@
             // If the feature is not an event then give it a background
             if(!feature.$div.hasClass('event'))
             {
-                feature.$div.css({
-                    backgroundColor: settings.colorMode=='rainbow' ? _randomGreyscale() : _randomColor()
-                });
+                switch(settings.colorMode)
+                {
+                    case 'rainbow':
+                        feature.$div.css({
+                            //backgroundColor: settings.colorMode=='rainbow' ? _randomGreyscale() : _randomColor()                            
+                        })
+                        break;
+                    case 'random':
+                        feature.$div.css({
+                            backgroundColor: _randomColor()
+                        });
+                        break;
+                }
             }
         
             if(feature.interval)
@@ -483,6 +493,7 @@
             {
                 $el.addClass('bottom');
             }
+            //_scroll($el.data('data').start);
         }
         /*
          * Add keydown support for main timeline
@@ -546,6 +557,10 @@
          */
         function _regionExpand(e)
         {          
+            if(!settings.enableRegionExpand)
+            {
+                return;
+            }
             $('.clone button').trigger('click');
             var $el = $(e.currentTarget);
             var $clone = $el.clone(true)

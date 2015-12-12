@@ -11,7 +11,7 @@
   font-weight: normal;
   font-style: normal;
 }
-.fa, div.timeline.loading:before, div.timeline button, div.timeline .event.active h2:after {
+.fa, div.timeline.loading:before, div.timeline button, div.timeline .event.active h2:after, div.timeline .event.active div span.date:before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -82,10 +82,10 @@
   float: right;
 }
 
-.fa.fa-pull-left, div.fa-pull-left.timeline.loading:before, div.timeline button.fa-pull-left, div.timeline .event.active h2.fa-pull-left:after {
+.fa.fa-pull-left, div.fa-pull-left.timeline.loading:before, div.timeline button.fa-pull-left, div.timeline .event.active h2.fa-pull-left:after, div.timeline .event.active div span.fa-pull-left.date:before {
   margin-right: .3em;
 }
-.fa.fa-pull-right, div.fa-pull-right.timeline.loading:before, div.timeline button.fa-pull-right, div.timeline .event.active h2.fa-pull-right:after {
+.fa.fa-pull-right, div.fa-pull-right.timeline.loading:before, div.timeline button.fa-pull-right, div.timeline .event.active h2.fa-pull-right:after, div.timeline .event.active div span.fa-pull-right.date:before {
   margin-left: .3em;
 }
 
@@ -98,10 +98,10 @@
   float: left;
 }
 
-.fa.pull-left, div.pull-left.timeline.loading:before, div.timeline button.pull-left, div.timeline .event.active h2.pull-left:after {
+.fa.pull-left, div.pull-left.timeline.loading:before, div.timeline button.pull-left, div.timeline .event.active h2.pull-left:after, div.timeline .event.active div span.pull-left.date:before {
   margin-right: .3em;
 }
-.fa.pull-right, div.pull-right.timeline.loading:before, div.timeline button.pull-right, div.timeline .event.active h2.pull-right:after {
+.fa.pull-right, div.pull-right.timeline.loading:before, div.timeline button.pull-right, div.timeline .event.active h2.pull-right:after, div.timeline .event.active div span.pull-right.date:before {
   margin-left: .3em;
 }
 
@@ -2784,16 +2784,19 @@ div.timeline .timespan h1, div.timeline .timespan h2, div.timeline .period h1, d
   padding: 5px;
   position: absolute;
 }
-div.timeline .eon {
+div.timeline .period {
+  background: rgba(0, 0, 0, 0.1);
+}
+div.timeline .eon, div.timeline .level-1 {
   height: 95%;
 }
-div.timeline .era {
+div.timeline .era, div.timeline .level-2 {
   height: 90%;
 }
-div.timeline .age {
+div.timeline .age, div.timeline .level-3 {
   height: 85%;
 }
-div.timeline .epoch {
+div.timeline .epoch, div.timeline .level-4 {
   height: 80%;
 }
 div.timeline .scale {
@@ -2814,26 +2817,35 @@ div.timeline .scale > * {
   z-index: 1000;
 }
 div.timeline .event {
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid white;
   border-radius: 2em;
   cursor: pointer;
-  height: 5px;
-  min-width: 5px;
-  width: 0;
+  height: 10px;
+  min-width: 10px;
+  width: 10px;
   z-index: 1000;
+}
+div.timeline .event:hover {
+  border-width: 5px;
 }
 div.timeline .event h2 {
   cursor: pointer;
+  text-shadow: 1px 1px 0px #000;
 }
 div.timeline .event h2, div.timeline .event div {
   display: none;
   margin: 0;
   width: 250px;
 }
+div.timeline .event.key-event {
+  z-index: 1001;
+}
 div.timeline .event.key-event h2 {
   display: block;
 }
 div.timeline .event.active {
+  background: rgba(0, 0, 0, 0.95);
   z-index: 1003;
 }
 div.timeline .event.active h2, div.timeline .event.active div {
@@ -2842,7 +2854,7 @@ div.timeline .event.active h2, div.timeline .event.active div {
   padding: 5px;
 }
 div.timeline .event.active h2 {
-  margin-top: 20px;
+  margin: 20px 16px 0 0;
   position: relative;
 }
 div.timeline .event.active h2:before {
@@ -2863,16 +2875,31 @@ div.timeline .event.active h2:after {
   right: 5px;
   top: 5px;
 }
-div.timeline .event.active img {
+div.timeline .event.active div {
+  padding-top: 0;
+}
+div.timeline .event.active div img {
   float: right;
   height: auto;
   margin: 0 0 5px 5px;
   width: 50px;
 }
+div.timeline .event.active div span {
+  display: block;
+  margin-bottom: 3px;
+}
+div.timeline .event.active div span.date {
+  opacity: 0.8;
+}
+div.timeline .event.active div span.date:before {
+  content: "\f073";
+  margin-right: 5px;
+}
 div.timeline .rotate h2 {
   margin-bottom: -10px;
   transform-origin: top left;
   transform: rotate(-90deg);
+  white-space: nowrap;
 }
 div.timeline .clone {
   background: rgba(0, 0, 0, 0.95);
