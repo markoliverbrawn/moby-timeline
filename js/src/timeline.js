@@ -418,6 +418,7 @@
             _debug('Loading data: '+url);
             _$me.addClass('loading');
             $.ajax({
+                dataType:'json',
                 success: function(data){
                     $(data).each(function(i,v){
                         _addFeature({

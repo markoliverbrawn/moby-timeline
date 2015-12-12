@@ -13,14 +13,15 @@ $padding: 5px;
 
 $width-event: 250px;
 
-$zIndexRegions: 0;
-$zIndexFeatures: 1000;
-$zIndexFeaturesKeyEvent: $zIndexFeatures+1;
-$zIndexFeaturesHover: $zIndexFeatures+2;
-$zIndexFeaturesActive: $zIndexFeatures+3;
-$zIndexLoader: $zIndexFeatures*10;
-$zIndexClone: $zIndexFeatures*2;
-$zIndexNav: $zIndexFeatures*2;
+
+$z-regions: 0;
+$z-features: 1000;
+$z-key-feature: $z-features+1;
+$z-features-hover: $z-features+2;
+$z-features-active: $z-features+3;
+$z-loader: $z-features*10;
+$z-clone: $z-features*2;
+$z-nav: $z-features*2;
 
 div.timeline{
     background:#000;
@@ -52,7 +53,7 @@ div.timeline{
             margin:-32px 0 0 -32px;
             position:fixed;
             top:50%;
-            z-index:$zIndexLoader;
+            z-index:$z-loader;
         }
     }
     div{
@@ -72,7 +73,7 @@ div.timeline{
             position:absolute;
             right:0;
             top:0;
-            z-index:$zIndexNav;
+            z-index:$z-nav;
         }
         
     }
@@ -121,7 +122,7 @@ div.timeline{
             padding-bottom:$padding;
             position:absolute;
             white-space:nowrap;
-            z-index:$zIndexFeatures;
+            z-index:$z-features;
         }
     }
     .event{
@@ -131,7 +132,7 @@ div.timeline{
         height:5px;
         min-width:5px;
         width:0;
-        z-index:$zIndexFeatures;
+        z-index:$z-features;
         h2{
             cursor:pointer;
         }
@@ -146,7 +147,7 @@ div.timeline{
             }
         }
         &.active{
-            z-index:$zIndexFeaturesActive;
+            z-index:$z-features-active;
             h2,div{
                 background:$bg-event;
                 display:block;
@@ -194,7 +195,7 @@ div.timeline{
         background: $bg-event;
 		border:none!important;
         opacity: 1!important;
-        z-index: $zIndexClone;
+        z-index: $z-clone;
         main{
             .event{
                 background:$bg-event-clone;

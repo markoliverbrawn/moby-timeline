@@ -1,0 +1,35 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,700italic,400italic);
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body.home * {
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+body.home > * {
+  height: 100%;
+  position: absolute;
+}
+body.home div {
+  left: 0;
+  width: 20%;
+}
+body.home iframe {
+  border: none;
+  right: 0;
+  width: 80%;
+}
+body.home h1 {
+  font-size: 1em;
+}
+body.home ul {
+  display: none;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+body.example {
+  font-family: 'Lato', sans-serif;
+}
