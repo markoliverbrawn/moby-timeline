@@ -6,8 +6,8 @@ $bg-event-color-clone: #fff;
 $bg-event: rgba($bg-event-color, 0.95);
 $bg-event-clone: rgba($bg-event-color-clone, 0.95);
 
-$fontColor: #fff;
-$fontSize: 14px;
+$font-color: #fff;
+$font-size: 14px;
 
 $padding: 5px;
 
@@ -36,9 +36,9 @@ div.timeline{
         -webkit-user-select: none; 
         -o-user-select: none;
         outline:none;
-        color:$fontColor;
+        color:$font-color;
         cursor:default;
-        font-size:$fontSize;
+        font-size:$font-size;
         //-webkit-transition: border-width 0.25s, font-size 0.25s, margin 0.25s, opacity 0.5s; /* Safari */
         //transition: border-width 0.25s, font-size 0.25s, margin 0.25s, opacity 0.5s;
     }
@@ -99,18 +99,18 @@ div.timeline{
     .period{
         background:rgba(#000, 0.1);
     }
-	.eon, .level-1{
-		height:95%;
-	}
-	.era, .level-2{
-		height:90%;
-	}
-	.age, .level-3{
-		height:85%;
-	}
-	.epoch, .level-4{
-		height:80%;
-	}
+    .eon, .level-1{
+        height:95%;
+    }
+    .era, .level-2{
+        height:90%;
+    }
+    .age, .level-3{
+        height:85%;
+    }
+    .epoch, .level-4{
+        height:80%;
+    }
     .scale{
         border-top:1px solid #fff;
         bottom:0px;
@@ -129,20 +129,20 @@ div.timeline{
         }
     }
     .event{
-        background:rgba(#fff,0.5);
+        background:rgba(#fff,0.25);
         border:1px solid rgba(#fff,1);
         border-radius:2em;
         cursor:pointer;
         height:10px;
         min-width:10px;
+        padding:5px;
         width:10px;
         z-index:$z-features;
         &:hover{
-            border-width:5px;
+            background:rgba(#fff,0.75);
         }
         h2{
             cursor:pointer;
-            margin:5px;
             text-shadow:1px 1px 0px #000;
         }
         h2,div{

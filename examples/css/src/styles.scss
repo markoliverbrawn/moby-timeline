@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,700italic,400italic);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+$fa-font-path:'src/vendor/font-awesome/fonts';
+@import "../../../css/src/vendor/font-awesome/scss/font-awesome"; 
 
 html,body{height:100%;margin:0;padding:0;}
 
@@ -52,6 +53,157 @@ body{
 
     &.example{
         font-family: 'Lato', sans-serif;
+        
+        /**
+         * Full example: Demonstrated how you might "iconify" the event markers using Font-awesome.
+         */
+        &.full{
+            
+            @mixin icon-event($color, $icon){
+                background:rgba($color,0.25);
+                border-color:$color;
+                &:before{
+                    border-color:$color;
+                    color:$color;
+                    content:$icon;
+                }
+                &:hover{
+                    background:$color;
+                }
+            }
+            @mixin graphic-event($url, $height:0, $width:0){
+                background:none;
+                border:none!important;
+                &:before{
+                    background:url($url);
+                    background-size:100% 100%;
+                    border:none;
+                    content:"";
+                    height:$height;
+                    width:$width;
+                }
+                &:hover{
+                    background:none;
+                }
+            }
+            
+            .twenties,.period{
+                &:before{
+                    background-attachment: fixed;
+                    background-color:#000;
+                    background-position: 50% 50%;
+                    background-size: cover;
+                    content:"";
+                    height:100%;
+                    opacity:0.2;
+                    position:absolute;
+                    width:100%;
+                }
+            }
+            .primordial:before{
+                background-color:#000;
+                background-image: url("../img/primordial.jpg");
+                opacity:0.3;
+            }
+            .early-life:before{
+                background-image: url("../img/early-plants.jpg");
+                opacity:0.1;
+            }
+            .dinosaurs:before{
+                background-color:#000;
+                background-image: url("../img/dinosaurs.jpg");
+                opacity:0.3;
+            }
+            .twenties:before{
+                background-image: url("../img/autos-roaring-twenties.jpg");
+            }
+            .ww1:before{
+                background-image: url("../img/ww1.jpg");
+            }
+            .ww2:before{
+                background-image: url("../img/ww2.jpg");
+            }
+            .event{
+                &.military, &.naval, &.social, &.political, &.aviation{
+                    height:0;
+                    min-height:0;
+                    opacity:0.75;
+                    padding:0px;
+                    width:0;
+                    &:hover{
+                        opacity:1;
+                        padding:3px;
+                        z-index:100000;
+                        &:before{
+                            background:#000;
+                        }
+                    }
+                    &:before{
+                        @extend .fa;
+                        @extend .fa-fw;
+                        background:rgba(#000,0.7);
+                        border:3px solid #fff;
+                        border-radius:3em;
+                        font-size:14px;
+                        left:-5px;
+                        padding:5px 3px;
+                        position: absolute;
+                        top:-7px;
+                        z-index:-1;
+                    }
+                    h2{
+                        text-shadow:0 0 1px #000,0 0 1px #000,0 0 1px #000,0 0 1px #000;
+                        z-index:100000;
+                    }
+                }
+                &.aviation{
+                    @include icon-event(purple, $fa-var-plane);
+                }
+                &.political{
+                    @include icon-event(green,$fa-var-bank);
+                }
+                &.military{
+                    @include icon-event(red,$fa-var-fort-awesome);
+                }
+                &.naval{
+                    @include icon-event(blue,$fa-var-ship);
+                }
+                &.social{
+                    @include icon-event(yellow,$fa-var-group);
+                }
+                
+                &.dino{
+                    &:before{
+                        left:-5px;
+                        padding:5px 3px;
+                        position: absolute;
+                        top:-72px;
+                        z-index:-1;
+                    }
+                    &.allosaurus{
+                        @include graphic-event('../img/dino-allosaurus.png', 100px, 100px);
+                    }
+                    &.tyranosaur{
+                        @include graphic-event('../img/dino-tyranosaur.png', 100px, 100px);
+                    }
+                    &.brachiosaurus{
+                        @include graphic-event('../img/dino-brachiosaurus.png', 100px, 100px);
+                    }
+                    &.plesiosaur{
+                        @include graphic-event('../img/dino-plesiosaur.png', 100px, 100px);
+                    }
+                    &.stegosaurus{
+                        @include graphic-event('../img/dino-stegosaurus.png', 100px, 100px);
+                    }
+                    &.triceratops{
+                        @include graphic-event('../img/dino-triceratops.png', 100px, 100px);
+                    }
+                    &.dilophosaurus{
+                        @include graphic-event('../img/dino-dilophosaurus.png', 100px, 100px);
+                    }
+                }
+            }
+        }
     }
 
 }

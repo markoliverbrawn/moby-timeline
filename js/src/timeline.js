@@ -67,7 +67,7 @@
                 {
                     case 'rainbow':
                         feature.$div.css({
-                            //backgroundColor: settings.colorMode=='rainbow' ? _randomGreyscale() : _randomColor()                            
+                            backgroundColor: settings.colorMode=='rainbow' ? _randomGreyscale() : _randomColor()                            
                         })
                         break;
                     case 'random':
@@ -465,7 +465,7 @@
                 end:(v.date.end ? v.date.end : v.date.start),
                 title:v.title,
                 top: (10+(60 * Math.random()))+'%'
-            }, 'event'+(true===v.keyEvent ? ' key-event' : '')+(v.image ? ' has-img' : ''));
+            }, 'event'+(true===v.keyEvent ? ' key-event' : '')+(v.image ? ' has-img' : '')+(v.class ? ' '+v.class : ''));
         }
         /**
          * Called when the data is updated
@@ -667,7 +667,7 @@
          */
         function _randomGreyscale()
         {
-            return 'rgba(0,0,0,'+(0.1 + 0.2*Math.random())+')';
+            return 'rgba(0,0,0,'+(0.0 + 0.1*Math.random())+')';
         }
         /**
          * Scroll it
