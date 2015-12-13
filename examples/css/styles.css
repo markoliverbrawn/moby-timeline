@@ -2907,6 +2907,10 @@ body.example.full .event.dino:before {
   top: -72px;
   z-index: -1;
 }
+body.example.full .event.dino:hover {
+  opacity: 1;
+  z-index: 100000;
+}
 body.example.full .event.dino.allosaurus {
   background: none;
   border: none !important;
