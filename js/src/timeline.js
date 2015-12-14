@@ -4,9 +4,12 @@
 
 (function($){
     $.fn.timeline = function(options){
+        
+        // Private vars
         var _$me = $(this);
         var _$inner;
         var _dragging = false;
+        var _events_by_date = {};
         var _minDate;
         var _maxDate;
         var _rainbow = new Rainbow();
@@ -19,8 +22,8 @@
             src: '',
             templateEvent: '<span class="date">[date]</span><span class="description">[image][description]</span><a href="[link]">More...</a>'
         }, options );
-        // Private functions
         
+        // Private functions        
         /**
          * Adds a feature (region, or event)
          * @param {object} feature
@@ -29,6 +32,7 @@
          */
         function _addFeature(feature, cls, $appendTo)
         {
+            var date_hash;
             var style = _getLeftAndWidth(feature, $appendTo);
             var $appendToMain = _$inner;
             if($appendTo!==undefined)
@@ -60,7 +64,7 @@
             {
                 feature.$div.addClass(feature.class);
             }
-            // If the feature is not an event then give it a background
+            // Events
             if(!feature.$div.hasClass('event'))
             {
                 switch(settings.colorMode)
@@ -77,7 +81,7 @@
                         break;
                 }
             }
-        
+            // If there is a scale, then add it
             if(feature.interval)
             {
                 _addScale(feature);
@@ -108,23 +112,55 @@
          */
         function _create()
         {
+            var me = this;
+            
+            // Show loading
             _$me.addClass('loading');
+            
+            // Create the layout regions
             _layout();
             
-            _debug(settings.data);
-            
+            // Load data if specified by config
             if(settings.data)
             {
+                
                 $(settings.data).each(function(i,v){
-                    _addDataItem(v);         
+                    
+                    _addDataItem(v);    
+                    
                 });
+                
                 _$me.removeClass('loading');
+                
             }
+            
+            // Load data from urls
             $(settings.src).each(function(i,v){
+                
                 setTimeout(function(){
-                    _load(v);
-                },500*i);
+                    
+                    // Does the data src specify it's own parser function?
+                    if(v.loadFunction && v.url)
+                    {
+                        v.loadFunction.call(me, v.url, me);
+                    }
+                    
+                    // Is the default loadFunction overidden?
+                    else if(settings.loadFunction)
+                    {
+                        settings.loadFunction.call(me, v, me);
+                    }
+                    
+                    // Default loadFunction
+                    else
+                    {
+                        _loadJSON(v);
+                    }
+                    
+                }, 500*i);
             });
+            
+            return this;
         }
         /**
          * Helper to determine if 2 days are equal
@@ -143,6 +179,14 @@
                 }
             });
             return eq;
+        }
+        /**
+         * Stringify a date
+         * @param {object} date
+         */
+        function _dateHash(date)
+        {
+            return ( date.year ? date.year : date )+'-'+( date.month ? date.month : '00' );//+'-'+( date.day ? date.day : '00' );
         }
         /**
          * Determine if a date item is between 2 others
@@ -299,7 +343,7 @@
         /**
          * Determine the left position and width of a feature
          * @param {object} period
-         * @param {object} timescales
+         * @param {object} $element
          * @returns {timeline_L1.$.fn.timeline._getLeftAndWidth.size}
          */
         function _getLeftAndWidth(period, $element)
@@ -325,7 +369,7 @@
                         width: $element.width()
                     }
                 ];
-                _debug(timescales);
+                //_debug(timescales);
             }
             
             $(timescales).each(function(i, timescale){
@@ -429,12 +473,13 @@
         }
         /**
          * Load data from a url
-         * @param {string} url
+         * @param {string}   url
+         * @param {function} callback
          * @returns {null}
          */
-        function _load(url, callback)
+        function _loadJSON(url, callback)
         {
-            _debug('Loading data: '+url);
+            //_debug('Loading data: '+url);
             _$me.addClass('loading');
             $.ajax({
                 dataType:'json',
@@ -443,7 +488,6 @@
                         _addDataItem(v);
                     });
                     settings.data = settings.data.concat(data);
-                    _onDataUpdate();
                     _$me.removeClass('loading');
                     if(callback!=undefined)
                     {
@@ -459,21 +503,22 @@
          */
         function _addDataItem(v)
         {
+            var top;
+            
+            /* 
+            // Undecided, but I think that stacking them, looks ugly, so sticking with random distribution for now
+            var date_hash = _dateHash(v.date.start);
+            _events_by_date[date_hash] ? _events_by_date[date_hash].push(v) : _events_by_date[date_hash] = [v];
+            top = 10+(10*_events_by_date[date_hash].length);
+            */
+            top = (10+(60 * Math.random()))+'%';
             _addFeature({
                 content:settings.templateEvent.replace('[title]',v.title).replace('[date]',_formatDateRange(v.date)).replace('[description]',v.description).replace(/\[link\]/g,v.link).replace('[image]',v.image?'<img src="'+v.image+'"/>':''),
                 start:v.date.start,
                 end:(v.date.end ? v.date.end : v.date.start),
                 title:v.title,
-                top: (10+(60 * Math.random()))+'%'
+                top: top
             }, 'event'+(true===v.keyEvent ? ' key-event' : '')+(v.image ? ' has-img' : '')+(v.class ? ' '+v.class : ''));
-        }
-        /**
-         * Called when the data is updated
-         * @returns {null}
-         */
-        function _onDataUpdate()
-        {
-            _debug('Data updated. New data length: '+settings.data.length);
         }
         /**
          * Drag
@@ -688,7 +733,7 @@
          */
         function _scrollBy(n)
         {
-			//_debug(_$inner.scrollLeft()+','+_$inner.width());
+            //_debug(_$inner.scrollLeft()+','+_$inner.width());
             _$inner.scrollLeft(_$inner.scrollLeft()-n);
         }
         /**
@@ -705,6 +750,46 @@
 
         return this.each(function() {
             _create.call(this);
+            
+            // PUBLIC FUNCTIONS
+            
+            /**
+             * Public method wrapper for  _addDataItem
+             * 
+             * @param {string} title
+             * @param {string} description
+             * @param {object} dateStart
+             * @param {object} dateEnd
+             * @param {string} link
+             * @param {string} image
+             * @param {string} cssClass
+             * @param {boolean} isKeyEvent
+             * @param {string} offsetTop
+             */
+            this.addItem = function(item) {                                
+                item = $.extend({
+                    title: '',
+                    description: '',
+                    date:{
+                        start: {
+                            year:null,
+                            month:null,
+                            day:null
+                        },
+                        end: {
+                            year:null,
+                            month:null,
+                            day:null
+                        }
+                    },
+                    link: '',
+                    image: '',
+                    class: '',
+                    keyEvent: false,
+                    top: null
+                }, item);                
+                _addDataItem(item);
+            };
         });
     };
 }(jQuery));

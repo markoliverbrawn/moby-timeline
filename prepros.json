@@ -1,0 +1,769 @@
+{
+  "id": "9e14d55b",
+  "cfgVersion": 1,
+  "name": "timeline",
+  "files": {
+    "28da2981": {
+      "id": "28da2981",
+      "pid": "9e14d55b",
+      "name": "styles.scss",
+      "input": "css\\src\\styles.scss",
+      "customOutput": false,
+      "type": "Scss",
+      "config": {
+        "autoCompile": true,
+        "lineNumbers": false,
+        "unixNewlines": false,
+        "sourcemaps": false,
+        "debug": false,
+        "compass": false,
+        "fullCompass": false,
+        "outputStyle": "expanded",
+        "autoprefixer": false
+      }
+    },
+    "a2a43bf1": {
+      "id": "a2a43bf1",
+      "pid": "9e14d55b",
+      "name": "styles.scss",
+      "input": "examples\\css\\src\\styles.scss",
+      "customOutput": false,
+      "type": "Scss",
+      "config": {
+        "autoCompile": true,
+        "lineNumbers": false,
+        "unixNewlines": false,
+        "sourcemaps": false,
+        "debug": false,
+        "compass": false,
+        "fullCompass": false,
+        "outputStyle": "expanded",
+        "autoprefixer": false
+      }
+    },
+    "63e8345e": {
+      "id": "63e8345e",
+      "pid": "9e14d55b",
+      "name": "timeline.js",
+      "input": "js\\src\\timeline.js",
+      "customOutput": false,
+      "type": "Js",
+      "config": {
+        "autoCompile": true,
+        "uglify": true,
+        "mangle": true,
+        "sourcemaps": false
+      }
+    }
+  },
+  "imports": {
+    "25b981ba": {
+      "id": "25b981ba",
+      "pid": "9e14d55b",
+      "path": "js\\src\\rainbow.js",
+      "parents": [
+        "63e8345e"
+      ]
+    },
+    "dda7f7f6": {
+      "id": "dda7f7f6",
+      "pid": "9e14d55b",
+      "path": "js\\src\\mousewheel.js",
+      "parents": [
+        "63e8345e"
+      ]
+    },
+    "fd52cf63": {
+      "id": "fd52cf63",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\font-awesome.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    },
+    "2e4cab7b": {
+      "id": "2e4cab7b",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_variables.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    },
+    "a3595e99": {
+      "id": "a3595e99",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_mixins.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    },
+    "d687f8fc": {
+      "id": "d687f8fc",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_path.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    },
+    "85848deb": {
+      "id": "85848deb",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_core.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    },
+    "8a3bad40": {
+      "id": "8a3bad40",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_larger.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    },
+    "ce0106cc": {
+      "id": "ce0106cc",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_fixed-width.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    },
+    "a83ddf22": {
+      "id": "a83ddf22",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_list.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    },
+    "90ddb0d6": {
+      "id": "90ddb0d6",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_bordered-pulled.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    },
+    "d1f2a667": {
+      "id": "d1f2a667",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_animated.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    },
+    "6667d7a3": {
+      "id": "6667d7a3",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_rotated-flipped.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    },
+    "c4f74502": {
+      "id": "c4f74502",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_stacked.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    },
+    "ec96729a": {
+      "id": "ec96729a",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_icons.scss",
+      "parents": [
+        "28da2981",
+        "a2a43bf1"
+      ]
+    }
+  },
+  "images": {
+    "53165004": {
+      "id": "53165004",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Byfleet_montage_of_Brooklands_models.jpg",
+      "size": 49211,
+      "name": "Byfleet_montage_of_Brooklands_models.jpg",
+      "type": "Jpg",
+      "initialSize": 49211,
+      "status": "NOT_OPTIMIZED"
+    },
+    "b633ae5c": {
+      "id": "b633ae5c",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\primordial.jpg",
+      "size": 268099,
+      "name": "primordial.jpg",
+      "type": "Jpg",
+      "initialSize": 268099,
+      "status": "NOT_OPTIMIZED"
+    },
+    "69e1facf": {
+      "id": "69e1facf",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\300_CC1101_3_29_0791.jpg",
+      "size": 56985,
+      "name": "300_CC1101_3_29_0791.jpg",
+      "type": "Jpg",
+      "initialSize": 56985,
+      "status": "NOT_OPTIMIZED"
+    },
+    "627dd83c": {
+      "id": "627dd83c",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Royal_Earlswood_Museum_James_Pullen__s_Fantasy_Barge.jpg",
+      "size": 84822,
+      "name": "Royal_Earlswood_Museum_James_Pullen__s_Fantasy_Barge.jpg",
+      "type": "Jpg",
+      "initialSize": 84822,
+      "status": "NOT_OPTIMIZED"
+    },
+    "52b30318": {
+      "id": "52b30318",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\autos-roaring-twenties.jpg",
+      "size": 39188,
+      "name": "autos-roaring-twenties.jpg",
+      "type": "Jpg",
+      "initialSize": 39188,
+      "status": "NOT_OPTIMIZED"
+    },
+    "625d384f": {
+      "id": "625d384f",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Our-Homestead_Old-Homestead-web.jpg",
+      "size": 65975,
+      "name": "Our-Homestead_Old-Homestead-web.jpg",
+      "type": "Jpg",
+      "initialSize": 65975,
+      "status": "NOT_OPTIMIZED"
+    },
+    "f5ce4f8f": {
+      "id": "f5ce4f8f",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\early-plants.jpg",
+      "size": 258549,
+      "name": "early-plants.jpg",
+      "type": "Jpg",
+      "initialSize": 258549,
+      "status": "NOT_OPTIMIZED"
+    },
+    "c02a06eb": {
+      "id": "c02a06eb",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\alien.jpg",
+      "size": 232430,
+      "name": "alien.jpg",
+      "type": "Jpg",
+      "initialSize": 232430,
+      "status": "NOT_OPTIMIZED"
+    },
+    "a9f45766": {
+      "id": "a9f45766",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\300_4348_2_029_0021.jpg",
+      "size": 41534,
+      "name": "300_4348_2_029_0021.jpg",
+      "type": "Jpg",
+      "initialSize": 41534,
+      "status": "NOT_OPTIMIZED"
+    },
+    "82e165cb": {
+      "id": "82e165cb",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Troy-300x192.jpg",
+      "size": 25618,
+      "name": "Troy-300x192.jpg",
+      "type": "Jpg",
+      "initialSize": 25618,
+      "status": "NOT_OPTIMIZED"
+    },
+    "def548e3": {
+      "id": "def548e3",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Teachers-2-300x200.jpg",
+      "size": 19389,
+      "name": "Teachers-2-300x200.jpg",
+      "type": "Jpg",
+      "initialSize": 19389,
+      "status": "NOT_OPTIMIZED"
+    },
+    "79fc9228": {
+      "id": "79fc9228",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Lightbox_Woking_Abbey_venetian_tyle.jpg",
+      "size": 100883,
+      "name": "Lightbox_Woking_Abbey_venetian_tyle.jpg",
+      "type": "Jpg",
+      "initialSize": 100883,
+      "status": "NOT_OPTIMIZED"
+    },
+    "3ca50b98": {
+      "id": "3ca50b98",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Laleham009-300x193.jpg",
+      "size": 18879,
+      "name": "Laleham009-300x193.jpg",
+      "type": "Jpg",
+      "initialSize": 18879,
+      "status": "NOT_OPTIMIZED"
+    },
+    "09fb42ac": {
+      "id": "09fb42ac",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\ww2.jpg",
+      "size": 177243,
+      "name": "ww2.jpg",
+      "type": "Jpg",
+      "initialSize": 177243,
+      "status": "NOT_OPTIMIZED"
+    },
+    "7473ac38": {
+      "id": "7473ac38",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Send___Ripley_Kenneth_White_shop_sign-300x169.jpg",
+      "size": 24647,
+      "name": "Send___Ripley_Kenneth_White_shop_sign-300x169.jpg",
+      "type": "Jpg",
+      "initialSize": 24647,
+      "status": "NOT_OPTIMIZED"
+    },
+    "c2ce6361": {
+      "id": "c2ce6361",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\St-Martins-Church-2-300x261.jpg",
+      "size": 25729,
+      "name": "St-Martins-Church-2-300x261.jpg",
+      "type": "Jpg",
+      "initialSize": 25729,
+      "status": "NOT_OPTIMIZED"
+    },
+    "3ff2327a": {
+      "id": "3ff2327a",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\My-Garden-A-Smee-Cover-1of2-web-210x300.jpg",
+      "size": 23432,
+      "name": "My-Garden-A-Smee-Cover-1of2-web-210x300.jpg",
+      "type": "Jpg",
+      "initialSize": 23432,
+      "status": "NOT_OPTIMIZED"
+    },
+    "e21eab27": {
+      "id": "e21eab27",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Little-Holocaust-Survivors.jpg",
+      "size": 46309,
+      "name": "Little-Holocaust-Survivors.jpg",
+      "type": "Jpg",
+      "initialSize": 46309,
+      "status": "NOT_OPTIMIZED"
+    },
+    "440115fe": {
+      "id": "440115fe",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Brooklands_Museum_Napier_Raylton-300x199.jpg",
+      "size": 21081,
+      "name": "Brooklands_Museum_Napier_Raylton-300x199.jpg",
+      "type": "Jpg",
+      "initialSize": 21081,
+      "status": "NOT_OPTIMIZED"
+    },
+    "a1807e05": {
+      "id": "a1807e05",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Royal_Earlswood_Museum_James_Pullen__s_Fantasy_Barge-300x201.jpg",
+      "size": 21555,
+      "name": "Royal_Earlswood_Museum_James_Pullen__s_Fantasy_Barge-300x201.jpg",
+      "type": "Jpg",
+      "initialSize": 21555,
+      "status": "NOT_OPTIMIZED"
+    },
+    "107a2395": {
+      "id": "107a2395",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\300_CC1101_3_54_0111.jpg",
+      "size": 53390,
+      "name": "300_CC1101_3_54_0111.jpg",
+      "type": "Jpg",
+      "initialSize": 53390,
+      "status": "NOT_OPTIMIZED"
+    },
+    "70d4669c": {
+      "id": "70d4669c",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\300_8969_1164c1.jpg",
+      "size": 60523,
+      "name": "300_8969_1164c1.jpg",
+      "type": "Jpg",
+      "initialSize": 60523,
+      "status": "NOT_OPTIMIZED"
+    },
+    "0e26384c": {
+      "id": "0e26384c",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\435361.jpg",
+      "size": 57538,
+      "name": "435361.jpg",
+      "type": "Jpg",
+      "initialSize": 57538,
+      "status": "NOT_OPTIMIZED"
+    },
+    "b8b18c64": {
+      "id": "b8b18c64",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Cherstey_Museum_Bronze_of_Stephan_Langton_with_King_John_sig-300x278.jpg",
+      "size": 34994,
+      "name": "Cherstey_Museum_Bronze_of_Stephan_Langton_with_King_John_sig-300x278.jpg",
+      "type": "Jpg",
+      "initialSize": 34994,
+      "status": "NOT_OPTIMIZED"
+    },
+    "bbb1eb22": {
+      "id": "bbb1eb22",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\9043_1_41_1-small-ESP.jpg",
+      "size": 27412,
+      "name": "9043_1_41_1-small-ESP.jpg",
+      "type": "Jpg",
+      "initialSize": 27412,
+      "status": "NOT_OPTIMIZED"
+    },
+    "9d70625d": {
+      "id": "9d70625d",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Watts_Gallery_Chapel_doors-245x300.jpg",
+      "size": 38277,
+      "name": "Watts_Gallery_Chapel_doors-245x300.jpg",
+      "type": "Jpg",
+      "initialSize": 38277,
+      "status": "NOT_OPTIMIZED"
+    },
+    "dd71d90b": {
+      "id": "dd71d90b",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\PANEL-5-IMAGE-2.jpg",
+      "size": 43142,
+      "name": "PANEL-5-IMAGE-2.jpg",
+      "type": "Jpg",
+      "initialSize": 43142,
+      "status": "NOT_OPTIMIZED"
+    },
+    "74572b1e": {
+      "id": "74572b1e",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Box-hill006-PC_53_ALB2_42-300x199.jpg",
+      "size": 30289,
+      "name": "Box-hill006-PC_53_ALB2_42-300x199.jpg",
+      "type": "Jpg",
+      "initialSize": 30289,
+      "status": "NOT_OPTIMIZED"
+    },
+    "b25eb455": {
+      "id": "b25eb455",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\dino-brachiosaurus.png",
+      "size": 3140,
+      "name": "dino-brachiosaurus.png",
+      "type": "Png",
+      "initialSize": 3140,
+      "status": "NOT_OPTIMIZED"
+    },
+    "5f750cc5": {
+      "id": "5f750cc5",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\godalmingmuseum250x150.jpg",
+      "size": 15195,
+      "name": "godalmingmuseum250x150.jpg",
+      "type": "Jpg",
+      "initialSize": 15195,
+      "status": "NOT_OPTIMIZED"
+    },
+    "4fd6eaa1": {
+      "id": "4fd6eaa1",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\titanic.jpg",
+      "size": 359854,
+      "name": "titanic.jpg",
+      "type": "Jpg",
+      "initialSize": 359854,
+      "status": "NOT_OPTIMIZED"
+    },
+    "4ee55b45": {
+      "id": "4ee55b45",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\dino-allosaurus.png",
+      "size": 2054,
+      "name": "dino-allosaurus.png",
+      "type": "Png",
+      "initialSize": 2054,
+      "status": "NOT_OPTIMIZED"
+    },
+    "f04a5cc0": {
+      "id": "f04a5cc0",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Godalming_Museum_Gertrude_Jekyll__s_gladstone_bag-300x230.jpg",
+      "size": 18333,
+      "name": "Godalming_Museum_Gertrude_Jekyll__s_gladstone_bag-300x230.jpg",
+      "type": "Jpg",
+      "initialSize": 18333,
+      "status": "NOT_OPTIMIZED"
+    },
+    "08a43d66": {
+      "id": "08a43d66",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\dinosaurs.jpg",
+      "size": 67877,
+      "name": "dinosaurs.jpg",
+      "type": "Jpg",
+      "initialSize": 67877,
+      "status": "NOT_OPTIMIZED"
+    },
+    "412cfafd": {
+      "id": "412cfafd",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\300_8877_2_3551.jpg",
+      "size": 56372,
+      "name": "300_8877_2_3551.jpg",
+      "type": "Jpg",
+      "initialSize": 56372,
+      "status": "NOT_OPTIMIZED"
+    },
+    "ce77c71b": {
+      "id": "ce77c71b",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\dino-dilophosaurus.png",
+      "size": 1746,
+      "name": "dino-dilophosaurus.png",
+      "type": "Png",
+      "initialSize": 1746,
+      "status": "NOT_OPTIMIZED"
+    },
+    "0cb01454": {
+      "id": "0cb01454",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\dino-triceratops.png",
+      "size": 1825,
+      "name": "dino-triceratops.png",
+      "type": "Png",
+      "initialSize": 1825,
+      "status": "NOT_OPTIMIZED"
+    },
+    "c5cb819e": {
+      "id": "c5cb819e",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\435361-300x187.jpg",
+      "size": 17152,
+      "name": "435361-300x187.jpg",
+      "type": "Jpg",
+      "initialSize": 17152,
+      "status": "NOT_OPTIMIZED"
+    },
+    "276b53cd": {
+      "id": "276b53cd",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\ww1.jpg",
+      "size": 332654,
+      "name": "ww1.jpg",
+      "type": "Jpg",
+      "initialSize": 332654,
+      "status": "NOT_OPTIMIZED"
+    },
+    "ec3563e8": {
+      "id": "ec3563e8",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Brooklands_Museum_Hawker_Hurricane.jpg",
+      "size": 74128,
+      "name": "Brooklands_Museum_Hawker_Hurricane.jpg",
+      "type": "Jpg",
+      "initialSize": 74128,
+      "status": "NOT_OPTIMIZED"
+    },
+    "0e38bf9b": {
+      "id": "0e38bf9b",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\dino-stegosaurus.png",
+      "size": 1815,
+      "name": "dino-stegosaurus.png",
+      "type": "Png",
+      "initialSize": 1815,
+      "status": "NOT_OPTIMIZED"
+    },
+    "96c86f21": {
+      "id": "96c86f21",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\dino-tyranosaur.png",
+      "size": 1881,
+      "name": "dino-tyranosaur.png",
+      "type": "Png",
+      "initialSize": 1881,
+      "status": "NOT_OPTIMIZED"
+    },
+    "e742e5c2": {
+      "id": "e742e5c2",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\dino-plesiosaur.png",
+      "size": 1906,
+      "name": "dino-plesiosaur.png",
+      "type": "Png",
+      "initialSize": 1906,
+      "status": "NOT_OPTIMIZED"
+    },
+    "7b929eff": {
+      "id": "7b929eff",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Children-at-Rowledge-House-Hostel-1944-300x221.jpg",
+      "size": 30790,
+      "name": "Children-at-Rowledge-House-Hostel-1944-300x221.jpg",
+      "type": "Jpg",
+      "initialSize": 30790,
+      "status": "NOT_OPTIMIZED"
+    },
+    "1ff1c416": {
+      "id": "1ff1c416",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Meadow-Platt-213x300.jpg",
+      "size": 32399,
+      "name": "Meadow-Platt-213x300.jpg",
+      "type": "Jpg",
+      "initialSize": 32399,
+      "status": "NOT_OPTIMIZED"
+    },
+    "6f126aef": {
+      "id": "6f126aef",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Poster-image-Woking-1967-RWBR003-web-300x197.jpg",
+      "size": 24374,
+      "name": "Poster-image-Woking-1967-RWBR003-web-300x197.jpg",
+      "type": "Jpg",
+      "initialSize": 24374,
+      "status": "NOT_OPTIMIZED"
+    },
+    "e39917a1": {
+      "id": "e39917a1",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Alan-Turing.jpg",
+      "size": 38656,
+      "name": "Alan-Turing.jpg",
+      "type": "Jpg",
+      "initialSize": 38656,
+      "status": "NOT_OPTIMIZED"
+    },
+    "d666ebe0": {
+      "id": "d666ebe0",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Our-Homestead_Home-web.jpg",
+      "size": 52395,
+      "name": "Our-Homestead_Home-web.jpg",
+      "type": "Jpg",
+      "initialSize": 52395,
+      "status": "NOT_OPTIMIZED"
+    },
+    "a3c7648e": {
+      "id": "a3c7648e",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\RC-Sherriff-in-uniform-port-212x300.jpg",
+      "size": 12856,
+      "name": "RC-Sherriff-in-uniform-port-212x300.jpg",
+      "type": "Jpg",
+      "initialSize": 12856,
+      "status": "NOT_OPTIMIZED"
+    },
+    "926ee409": {
+      "id": "926ee409",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\seale001-300x185.jpg",
+      "size": 26527,
+      "name": "seale001-300x185.jpg",
+      "type": "Jpg",
+      "initialSize": 26527,
+      "status": "NOT_OPTIMIZED"
+    },
+    "1dfd05f1": {
+      "id": "1dfd05f1",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Haslemere_Museum_Godfrey_Blount_textile.jpg",
+      "size": 69670,
+      "name": "Haslemere_Museum_Godfrey_Blount_textile.jpg",
+      "type": "Jpg",
+      "initialSize": 69670,
+      "status": "NOT_OPTIMIZED"
+    },
+    "93ddb5c1": {
+      "id": "93ddb5c1",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\pyramids.jpg",
+      "size": 276735,
+      "name": "pyramids.jpg",
+      "type": "Jpg",
+      "initialSize": 276735,
+      "status": "NOT_OPTIMIZED"
+    },
+    "1ff82a84": {
+      "id": "1ff82a84",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\Guildford-Tank-poster-small-191x300.jpg",
+      "size": 28958,
+      "name": "Guildford-Tank-poster-small-191x300.jpg",
+      "type": "Jpg",
+      "initialSize": 28958,
+      "status": "NOT_OPTIMIZED"
+    },
+    "55d7331a": {
+      "id": "55d7331a",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\300_7828_2_165_031.jpg",
+      "size": 70752,
+      "name": "300_7828_2_165_031.jpg",
+      "type": "Jpg",
+      "initialSize": 70752,
+      "status": "NOT_OPTIMIZED"
+    }
+  },
+  "config": {
+    "watch": true,
+    "liveRefresh": true,
+    "liveRefreshDelay": 0,
+    "filterPatterns": "vendor,data,README.md",
+    "useCustomServer": false,
+    "customServerUrl": "",
+    "cssPath": "../",
+    "jsPath": "../",
+    "htmlPath": "html/",
+    "minJsPath": "../",
+    "htmlExtension": ".html",
+    "cssPathType": "RELATIVE_FILEDIR",
+    "htmlPathType": "REPLACE_TYPE",
+    "jsPathType": "RELATIVE_FILEDIR",
+    "minJsPathType": "RELATIVE_FILEDIR",
+    "htmlTypes": "jade, haml, slim, markdown, md",
+    "cssTypes": "less, sass, stylus, scss, styl",
+    "jsTypes": "coffee, coffeescript, coffeescripts, ls, livescript, livescripts",
+    "cssPreprocessorPath": "",
+    "htmlPreprocessorPath": "",
+    "jsPreprocessorPath": "",
+    "minJsPreprocessorPath": "",
+    "autoprefixerBrowsers": "",
+    "ftpHost": "",
+    "ftpPort": "21",
+    "ftpRemotePath": "",
+    "ftpIgnorePreprocessorFiles": true,
+    "ftpType": "FTP",
+    "ftpExcludePatterns": "",
+    "ftpPassword": "",
+    "ftpUsername": ""
+  }
+}
