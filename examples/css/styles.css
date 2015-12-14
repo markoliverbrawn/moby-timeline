@@ -12,7 +12,7 @@
   font-weight: normal;
   font-style: normal;
 }
-.fa, body.example.full .event.military:before, body.example.full .event.naval:before, body.example.full .event.social:before, body.example.full .event.political:before, body.example.full .event.aviation:before {
+.fa, body.home a:before, body.example.full .event.military:before, body.example.full .event.naval:before, body.example.full .event.social:before, body.example.full .event.political:before, body.example.full .event.aviation:before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -44,7 +44,7 @@
   font-size: 5em;
 }
 
-.fa-fw, body.example.full .event.military:before, body.example.full .event.naval:before, body.example.full .event.social:before, body.example.full .event.political:before, body.example.full .event.aviation:before {
+.fa-fw, body.home a:before, body.example.full .event.military:before, body.example.full .event.naval:before, body.example.full .event.social:before, body.example.full .event.political:before, body.example.full .event.aviation:before {
   width: 1.28571em;
   text-align: center;
 }
@@ -83,10 +83,10 @@
   float: right;
 }
 
-.fa.fa-pull-left, body.example.full .fa-pull-left.event.military:before, body.example.full .fa-pull-left.event.naval:before, body.example.full .fa-pull-left.event.social:before, body.example.full .fa-pull-left.event.political:before, body.example.full .fa-pull-left.event.aviation:before {
+.fa.fa-pull-left, body.home a.fa-pull-left:before, body.example.full .fa-pull-left.event.military:before, body.example.full .fa-pull-left.event.naval:before, body.example.full .fa-pull-left.event.social:before, body.example.full .fa-pull-left.event.political:before, body.example.full .fa-pull-left.event.aviation:before {
   margin-right: .3em;
 }
-.fa.fa-pull-right, body.example.full .fa-pull-right.event.military:before, body.example.full .fa-pull-right.event.naval:before, body.example.full .fa-pull-right.event.social:before, body.example.full .fa-pull-right.event.political:before, body.example.full .fa-pull-right.event.aviation:before {
+.fa.fa-pull-right, body.home a.fa-pull-right:before, body.example.full .fa-pull-right.event.military:before, body.example.full .fa-pull-right.event.naval:before, body.example.full .fa-pull-right.event.social:before, body.example.full .fa-pull-right.event.political:before, body.example.full .fa-pull-right.event.aviation:before {
   margin-left: .3em;
 }
 
@@ -99,10 +99,10 @@
   float: left;
 }
 
-.fa.pull-left, body.example.full .pull-left.event.military:before, body.example.full .pull-left.event.naval:before, body.example.full .pull-left.event.social:before, body.example.full .pull-left.event.political:before, body.example.full .pull-left.event.aviation:before {
+.fa.pull-left, body.home a.pull-left:before, body.example.full .pull-left.event.military:before, body.example.full .pull-left.event.naval:before, body.example.full .pull-left.event.social:before, body.example.full .pull-left.event.political:before, body.example.full .pull-left.event.aviation:before {
   margin-right: .3em;
 }
-.fa.pull-right, body.example.full .pull-right.event.military:before, body.example.full .pull-right.event.naval:before, body.example.full .pull-right.event.social:before, body.example.full .pull-right.event.political:before, body.example.full .pull-right.event.aviation:before {
+.fa.pull-right, body.home a.pull-right:before, body.example.full .pull-right.event.military:before, body.example.full .pull-right.event.naval:before, body.example.full .pull-right.event.social:before, body.example.full .pull-right.event.political:before, body.example.full .pull-right.event.aviation:before {
   margin-left: .3em;
 }
 
@@ -2756,6 +2756,10 @@ body.home a {
   display: block;
   padding: 10px;
 }
+body.home a:before {
+  content: "\f054";
+  margin-right: 10px;
+}
 body.home ul {
   background: #4d4d4d;
   display: none;
@@ -2769,6 +2773,12 @@ body.home li {
 }
 body.home li:last-child {
   border: none;
+}
+body.home .active {
+  background: gray;
+}
+body.home .active a:before {
+  content: "\f078";
 }
 body.example {
   font-family: 'Lato', sans-serif;
@@ -3015,4 +3025,24 @@ body.example.full .event.dino.dilophosaurus:before {
 }
 body.example.full .event.dino.dilophosaurus:hover {
   background: none;
+}
+body.example.e4 > h1 {
+  color: #fff;
+  position: fixed;
+  right: 20px;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  z-index: 1000000;
+}
+body.example.e4 div.timeline * {
+  color: inherit;
+  text-shadow: none;
+}
+body.example.e4 div.timeline .timespan h1, body.example.e4 div.timeline .timespan .scale, body.example.e4 div.timeline .timespan h2, body.example.e4 div.timeline .period h1, body.example.e4 div.timeline .period .scale, body.example.e4 div.timeline .period h2 {
+  opacity: 0.3 !important;
+}
+body.example.e4 div.timeline .period h2 {
+  font-size: 16px;
+}
+body.example.e4 div.timeline .event.active * {
+  color: #fff;
 }

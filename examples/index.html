@@ -25,17 +25,27 @@
             </ul>
             <h1><a href="example-03.html" target="example">Example 03 - Custom Colours</a></h1>
             <ul>
-                <li><i class="fa fa-fw fa-paint-brush"></i> Uses custom colouring</li>
+                <li>Uses custom colouring</li>
+            </ul>
+            <h1><a href="example-04.html" target="example">Example 04 - Custom Loader</a></h1>
+            <ul>
+                <li>Loads data from an RSS feed</li>
             </ul>
         </div>
         <iframe name="example">
         </iframe>
         <script>
             $('a').click(function(e){
+                $('.active').removeClass('active');
                 var $a = $(e.currentTarget);
-                $a.parent().next(':hidden').slideDown(function(){    
-                    $('iframe').attr('src', $a.attr('href'));
-                }).siblings('ul:visible').slideUp();
+                $a
+                    .parent()
+                    .addClass('active')
+                    .next(':hidden')
+                    .slideDown(function(){    
+                        $('iframe').attr('src', $a.attr('href'));
+                    })
+                    .siblings('ul:visible').slideUp();
                 return false;
             }).eq(1).trigger('click');
         </script>

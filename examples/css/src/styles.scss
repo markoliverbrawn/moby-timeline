@@ -34,6 +34,12 @@ body{
         a{
             display:block;
             padding:10px;
+            &:before{
+                @extend .fa;
+                @extend .fa-fw;
+                content:$fa-var-chevron-right;
+                margin-right:10px;
+            }
         }
         ul{
             background:lighten(#333, 10%);
@@ -47,6 +53,14 @@ body{
             padding:10px;
             &:last-child{
                 border:none;
+            }
+        }
+        .active{
+            background:lighten(#333, 30%);
+            a{
+                &:before{
+                    content:$fa-var-chevron-down;
+                }
             }
         }
     }
@@ -205,6 +219,32 @@ body{
                     &.dilophosaurus{
                         @include graphic-event('../img/dino-dilophosaurus.png', 100px, 100px);
                     }
+                }
+            }
+        }
+        &.e4{
+            &>h1{
+                color:#fff;
+                position:fixed;
+                right:20px;
+                text-shadow:2px 2px 0px rgba(#000,0.5);
+                z-index:1000000;
+            }
+            div.timeline{
+                *{
+                    color:inherit;
+                    text-shadow:none;
+                }
+                .timespan, .period{
+                    h1, .scale, h2{
+                        opacity:0.3!important;
+                    }
+                }
+                .period h2{
+                    font-size:16px;
+                }
+                .event.active *{
+                    color:#fff;
                 }
             }
         }

@@ -20,7 +20,7 @@
             monthNames:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             onCreate: function(){},
             src: '',
-            templateEvent: '<span class="date">[date]</span><span class="description">[image][description]</span><a href="[link]">More...</a>'
+            templateEvent: '<span class="date">[date]</span><span class="description">[image][description]</span><a href="[link]" target="_blank">More...</a>'
         }, options );
         
         // Private functions  
