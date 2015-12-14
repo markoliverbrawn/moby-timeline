@@ -16,18 +16,22 @@
         var _scrollInterval;
         var settings = $.extend({
             colorMode: '',
-            data:[],
-            monthNames:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            data: [],
+            monthNames:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             onCreate: function(){},
             src: '',
             templateEvent: '<span class="date">[date]</span><span class="description">[image][description]</span><a href="[link]">More...</a>'
         }, options );
         
-        // Private functions        
+        // Private functions  
+        
         /**
          * Adds a feature (region, or event)
+         * 
          * @param {object} feature
          * @param {string} cls
+         * @param {object} $appendTo
+         * 
          * @returns {null}
          */
         function _addFeature(feature, cls, $appendTo)
@@ -89,25 +93,34 @@
         }
         /**
          * Add scale ticks
-         * @param {$jquery} period
+         * 
+         * @param {object} item
+         * 
          * @returns {void}
          */
         function _addScale(item)
         {
             if(item.interval)
             {
-                var $ul = $('<ul class="scale"></ul>').css({
-                    width:item.$div.width()
-                }).appendTo(item.$div);
+                var $ul = $('<ul class="scale"></ul>')
+                    .css({
+                        width:item.$div.width()
+                    })
+                    .appendTo(item.$div);
+            
                 $(item.interval).each(function(i, v){
-                    $ul.append($('<li></li>').css({
-                        left:_getDatePosition(v) - item.$div.offset().left
-                    }).html(_formatDate(v)));
+                    $ul
+                        .append($('<li></li>')
+                        .css({
+                            left:_getDatePosition(v) - item.$div.offset().left
+                        })
+                        .html(_formatDate(v)));
                 });
             }
         }
         /**
          * Creates the timeline
+         * 
          * @returns {null}
          */
         function _create()
@@ -167,22 +180,31 @@
          * 
          * @param {object} d1
          * @param {object} d2
+         * 
+         * @return {boolean}
          */
         function _datesEqual(d1, d2)
         {
             var eq = true;
+            
             $.each(['day','month','year'],function(i,v){
+                
                 if(d1[v]!=d2[v])
                 {
                     eq = false;
                     return;
                 }
+                
             });
+            
             return eq;
         }
         /**
          * Stringify a date
+         * 
          * @param {object} date
+         * 
+         * @return {string}
          */
         function _dateHash(date)
         {
@@ -190,28 +212,28 @@
         }
         /**
          * Determine if a date item is between 2 others
+         * 
          * @param {object} d
          * @param {object} start
          * @param {object} end
+         * 
          * @return boolean
          */
         function _dateWithinRange(d, start, end)
         {
-            //_debug(d);
-            //_debug(start);
-            //_debug(end);
+            var y0 = d.year !== undefined ? d.year : d;
             
-            var y0 = d.year!=undefined ? d.year : d;
-            var y1 = start.year!=undefined ? start.year : start;
-            var y2 = end.year!=undefined ? end.year : end;
+            var y1 = start.year !== undefined ? start.year : start;
+            
+            var y2 = end.year !== undefined ? end.year : end;
         
-            
-            
-            return y0>=y1 && y0<=y2;
+            return y0 >= y1 && y0 <= y2;
         }
         /**
          * Wrapper for console.log
+         * 
          * @param {object} obj
+         * 
          * @returns {null}
          */
         function _debug(obj)
@@ -225,6 +247,7 @@
          * Format a date object|string
          * 
          * @param {type} d
+         * 
          * @returns {String|@var;y}
          */
         function _formatDate(d)
@@ -233,48 +256,62 @@
             {
                 return _formatYear(d);
             }
+            
             if(d.format)
             {
-                return d.format.replace('y', d.year).replace('m', settings.monthNames[d.month-1]).replace('d', d.day);
+                return d.format
+                    .replace('y', d.year)
+                    .replace('m', settings.monthNames[d.month-1])
+                    .replace('d', d.day);
             }
             
             var ret = _formatYear(d.year);
+            
             if(d.month)
             {
                 ret = settings.monthNames[d.month-1]+' '+ret;
             }
+            
             if(d.day)
             {
                 ret = d.day+' '+ret;
             }
+            
             return ret;
         }
         /**
          * Format a year based on magnitude
+         * 
          * @param {number} y
+         * 
          * @returns {string}
          */
         function _formatYear(y)
         {
             var ret = y;
-            if(Math.abs(y)>=1000000)
+            
+            if( Math.abs( y ) >= 1000000 )
             {
-                ret = (Math.abs(y/1000000).toFixed(1)+'m yrs').replace('.0','');
+                ret = ( Math.abs( y / 1000000 ).toFixed(1) + 'm yrs' ).replace( '.0', '' );
             }
-            else if(Math.abs(y)>10000)
+            else if( Math.abs( y ) > 10000 )
             {
-                ret = _numberWithCommas(Math.abs(y));
+                ret = _numberWithCommas( Math.abs( y ) );
             }
+            
             if(y < 0)
             {
-                ret = ret+' BC';
+                ret = ret + ' BC';
             }
+            
             return ret;
         }
         /**
          * Format a number with 1000s separator
+         * 
          * @param {type} x
-         * @returns {unresolved}
+         * 
+         * @returns {string}
          */
         function _numberWithCommas(x) 
         {
@@ -282,12 +319,14 @@
         }
         /**
          * Get a formatted date range
+         * 
          * @param {object} dates
+         * 
          * @returns {string}
          */
         function _formatDateRange(dates)
         {
-            var ret = [_formatDate(dates.start)];
+            var ret = [ _formatDate(dates.start) ];
             if(dates.end)
             {
                 if(!_datesEqual(dates.start, dates.end))
@@ -299,7 +338,9 @@
         }
         /**
          * Determine the left position of a date
+         * 
          * @param {object} date
+         * 
          * @returns {number}
          */
         function _getDatePosition(date)
@@ -342,8 +383,10 @@
         }
         /**
          * Determine the left position and width of a feature
+         * 
          * @param {object} period
          * @param {object} $element
+         * 
          * @returns {timeline_L1.$.fn.timeline._getLeftAndWidth.size}
          */
         function _getLeftAndWidth(period, $element)
@@ -414,6 +457,7 @@
         }
         /**
          * Get the total width of the timeline
+         * 
          * @returns {Number}
          */
         function _getWidth()
@@ -427,6 +471,7 @@
         }
         /**
          * Layout the divs
+         * 
          * @returns {null}
          */
         function _layout()
@@ -473,8 +518,10 @@
         }
         /**
          * Load data from a url
+         * 
          * @param {string}   url
          * @param {function} callback
+         * 
          * @returns {null}
          */
         function _loadJSON(url, callback)
@@ -499,6 +546,7 @@
         }
         /**
          * Parse and add data
+         * 
          * @param {object} v
          */
         function _addDataItem(v)
@@ -522,7 +570,9 @@
         }
         /**
          * Drag
+         * 
          * @param {event} e
+         * 
          * @returns {void}
          */
         function _onDrag(e)
@@ -537,7 +587,10 @@
         }
         /**
          * Expands an event
+         * 
          * @param {event} e
+         * 
+         * @return {void}
          */
         function _onFeatureClick(e)
         {
@@ -559,7 +612,10 @@
         }
         /*
          * Add keydown support for main timeline
+         * 
          * @param {event} e
+         * 
+         * @return {void}
          */
         function _onKeyDown(e)
         {
@@ -575,7 +631,10 @@
         }
         /*
          * Add keyup support for main timeline
+         * 
          * @param {event} e
+         * 
+         * @return {void}
          */
         function _onKeyUp(e)
         {
@@ -592,7 +651,9 @@
         }
         /**
          * Collapse a region
+         * 
          * @param {event} e
+         * 
          * @returns {void}
          */
         function _regionCollapse(e)
@@ -614,7 +675,9 @@
         }
         /**
          * Expand a region
+         * 
          * @param {event} e
+         * 
          * @returns {void}
          */
         function _regionExpand(e)
@@ -681,7 +744,9 @@
         }
         /**
          * Keypress handlers for region expanded
+         * 
          * @param {event} e
+         * 
          * @returns {void}
          */
         function _onRegionKeypress(e)
@@ -695,6 +760,7 @@
         }
         /**
          * Helper function to generate a random color
+         * 
          * @returns {String}
          */
         function _randomColor()
@@ -708,6 +774,7 @@
         }
         /**
          * Generate a random greyscale tone
+         * 
          * @returns {String}
          */
         function _randomGreyscale()
@@ -716,7 +783,9 @@
         }
         /**
          * Scroll it
+         * 
          * @param {integer} d
+         * 
          * @returns {void}
          */
         function _scroll(d)
@@ -729,6 +798,7 @@
          * Scroll by an amount
          * 
          * @param {number} n
+         * 
          * @returns {void}
          */
         function _scrollBy(n)
@@ -740,6 +810,7 @@
          * Scroll to a date
          * 
          * @param {object} date
+         * 
          * @returns {void}
          */
         function _scrollToDate(date)
