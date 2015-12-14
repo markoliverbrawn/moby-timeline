@@ -52,7 +52,7 @@
         "autoCompile": true,
         "uglify": true,
         "mangle": true,
-        "sourcemaps": true
+        "sourcemaps": false
       }
     }
   },
