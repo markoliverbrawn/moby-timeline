@@ -2,4 +2,5 @@
 /.timesheet
 /.nb/
 /.gitignore
+/prepros.json
 /index.php
