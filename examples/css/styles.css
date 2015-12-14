@@ -3046,3 +3046,21 @@ body.example.e4 div.timeline .period h2 {
 body.example.e4 div.timeline .event.active * {
   color: #fff;
 }
+body.example.e5 .controls {
+  background: #fff;
+  color: #fff;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  position: fixed;
+  right: 20px;
+  top: 10px;
+  z-index: 1000000;
+}
+body.example.e5 .controls li {
+  color: #000;
+  cursor: pointer;
+}
+body.example.e5 .timespan {
+  border: none !important;
+}

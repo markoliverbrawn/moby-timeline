@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    
+    <!-- Include the timeline css -->
+    <link rel="stylesheet" href="../css/styles.css"/>        
+    
+    <!-- The Examples css -->
+    <link rel="stylesheet" href="css/styles.css"/>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    <script src="../js/timeline.min.js"></script>
+  
+  </head>
+  <body class="example e5">
+      <ul class="controls">
+          <li onclick="timelines[0].gotoDate(100);">Jump to 100</li>
+          <li onclick="timelines[0].gotoDate(500);">Jump to 6th Century</li>
+          <li onclick="timelines[0].gotoDate(1000);">Jump to 1000</li>
+          <li onclick="timelines[0].gotoDate(1550);">Jump to the 1500s</li>
+          <li onclick="timelines[0].gotoDate({year:1272,month:8,day:4});">Jump to Aug 4th, 1272</li>
+      </ul>
+      <div class="timeline"></div>
+	  <script>
+		var timelines = $('.timeline').timeline({
+                    colorMode: 'rainbow',
+                    colors:['777777','999999'],
+                    timescales:[
+                        {
+                            start:0,
+                            end:2000,
+                            width:3*$(window).width(),
+                            interval:[100, 200, 300, 400, 500, 600, 700, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900]
+                        }
+                    ],
+                    src:[
+                        'data/07.js',
+                        'data/08.js'
+                    ]
+                });
+	</script>
+  </body>
+</html>

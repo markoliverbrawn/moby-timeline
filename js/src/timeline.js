@@ -5,6 +5,7 @@
 (function($){
     $.fn.timeline = function(options){
         
+        
         // Private vars
         var _$me = $(this);
         var _$inner;
@@ -18,8 +19,7 @@
             colorMode: '',
             data: [],
             monthNames:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            onCreate: function(){},
-            src: '',
+            src: [],
             templateEvent: '<span class="date">[date]</span><span class="description">[image][description]</span><a href="[link]" target="_blank">More...</a>'
         }, options );
         
@@ -820,6 +820,7 @@
         }
 
         return this.each(function() {
+            
             _create.call(this);
             
             // PUBLIC FUNCTIONS
@@ -860,6 +861,18 @@
                     top: null
                 }, item);                
                 _addDataItem(item);
+            };
+            /**
+             * Scroll to a date
+             * 
+             * @param {object} date
+             * 
+             * @return {void}
+             */
+            this.gotoDate = function(date){
+                
+                _scrollToDate(date);
+                
             };
         });
     };
