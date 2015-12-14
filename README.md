@@ -16,13 +16,13 @@ Create "test.html" in the examples directory, containing the following markup:
     <link rel="stylesheet" href="../css/styles.css"/>
     <style type="text/css">
         html, body{
-			height:100%;
-			margin:0;
-			padding:0;
-		}
+		height:100%;
+		margin:0;
+		padding:0;
+	}
     	.timespan{
-        	border:none!important;
-		}
+       		border:none!important;
+	}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="../js/timeline.min.js"></script>
@@ -32,7 +32,7 @@ Create "test.html" in the examples directory, containing the following markup:
 	  <script>
 		$('.timeline').timeline({
 			colorMode: 'rainbow',
-        	colors:['000000','000000'],
+        		colors:['000000','000000'],
 			timescales:[
 				{
 					start: 1900,
@@ -63,3 +63,11 @@ Create "test.html" in the examples directory, containing the following markup:
 </html>
 ```
 This will create a bare bones timeline in black, with one "Timescale", a scale, and a single event.
+
+## Features
+1. Drag to scroll
+2. Manually trigger jump-to-date for external navs
+3. "Unlimited" timescales and regions
+4. Load from AJAX or config
+5. CSS styled for granular design customisation
+6. Custom loadFunction-ality
