@@ -1,4 +1,4 @@
-# Timeline
+# MOBy Timeline
 A timeline widget for historical heritage timelines with a focus on `stylability` and `scalability`.
 
 ## View the Examples
