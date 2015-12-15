@@ -3,8 +3,11 @@
 
 
 (function($){
+    
     $.fn.timeline = function(options){
         
+        var LAYOUT_HORIZONTAL = 0;
+        var LAYOUT_VERTICAL = 1;
         
         // Private vars
         var _$me = $(this);
@@ -18,6 +21,7 @@
         var settings = $.extend({
             colorMode: '',
             data: [],
+            layoutMode: null,
             monthNames:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             src: [],
             templateEvent: '<span class="date">[date]</span><span class="description">[image][description]</span><a href="[link]" target="_blank">More...</a>'
@@ -25,6 +29,36 @@
         
         // Private functions  
         
+        /**
+         * Parse and add data
+         * 
+         * @param {object} v
+         */
+        function _addDataItem(v)
+        {
+            var offset;
+            /* 
+            // Undecided, but I think that stacking them, looks ugly, so sticking with random distribution for now
+            var date_hash = _dateHash(v.date.start);
+            _events_by_date[date_hash] ? _events_by_date[date_hash].push(v) : _events_by_date[date_hash] = [v];
+            offset = 10+(10*_events_by_date[date_hash].length);
+            */
+            if(_isVertical())
+            {
+                offset = (20+(70 * Math.random()))+'%';
+            }
+            else
+            {
+                offset = (10+(60 * Math.random()))+'%';
+            }
+            _addFeature({
+                content:settings.templateEvent.replace('[title]',v.title).replace('[date]',_formatDateRange(v.date)).replace('[description]',v.description).replace(/\[link\]/g,v.link).replace('[image]',v.image?'<img src="'+v.image+'"/>':''),
+                start:v.date.start,
+                end:(v.date.end ? v.date.end : v.date.start),
+                title:v.title,
+                offset: offset
+            }, 'event'+(true===v.keyEvent ? ' key-event' : '')+(v.image ? ' has-img' : '')+(v.class ? ' '+v.class : ''));
+        }
         /**
          * Adds a feature (region, or event)
          * 
@@ -37,23 +71,35 @@
         function _addFeature(feature, cls, $appendTo)
         {
             var date_hash;
-            var style = _getLeftAndWidth(feature, $appendTo);
+            var style = _getOffsetAndWidth(feature, $appendTo);
             var $appendToMain = _$inner;
+            var axis1, axis2, cssProp;
+            if(_isVertical())
+            {
+                axis1 = 'top';
+                axis2 = 'left';
+                cssProp = 'height';
+            }
+            else
+            {
+                axis1 = 'left';
+                axis2 = 'top';
+                cssProp = 'width';
+            }
+            
             if($appendTo!==undefined)
             {
                 $appendToMain = $appendTo.find('main');
             }
-            if(style.left===null)
+            if(style[cssProp]===null)
             {
                 return;
             }
             feature.$div = $('<div></div>')
                 .appendTo($appendToMain)
-                .css({
-                    left: style.left + $appendToMain.scrollLeft(),
-                    top: feature.top ? feature.top : null,
-                    width: style.width
-                })
+                .css(axis1, style[axis1] + (axis1=='left' ? $appendToMain.scrollLeft() : $appendToMain.scrollTop()))
+                .css(axis2, feature.offset ? feature.offset : null)
+                .css(cssProp, style[cssProp])
                 .data('data', feature)
                 .html('<h2>'+feature.title+'</h2>'+(feature.content ? '<div>'+feature.content+'</div>' : ''))
                 .click(_onFeatureClick);
@@ -102,21 +148,24 @@
         {
             if(item.interval)
             {
+                var cssProp = settings.layoutMode==LAYOUT_VERTICAL ? 'height' : 'width';
+                var cssProp2 = settings.layoutMode==LAYOUT_VERTICAL ? 'top' : 'left';
+                
                 var $ul = $('<ul class="scale"></ul>')
-                    .css({
-                        width:item.$div.width()
-                    })
+                    .css(cssProp, cssProp == 'width' ? item.$div.width() : item.$div.height())
                     .appendTo(item.$div);
             
                 $(item.interval).each(function(i, v){
                     $ul
                         .append($('<li></li>')
-                        .css({
-                            left:_getDatePosition(v) - item.$div.offset().left
-                        })
+                        .css(cssProp2, (cssProp2=='left' ? _getDatePosition(v) - item.$div.offset().left : _getDatePosition(v) - item.$div.offset().top))
                         .html(_formatDate(v)));
                 });
             }
+        }
+        function _clear()
+        {
+            _$me.html('');
         }
         /**
          * Creates the timeline
@@ -127,8 +176,18 @@
         {
             var me = this;
             
+            // Set vertical/horizontal
+            if(null===settings.layoutMode)
+            {
+                settings.layoutMode = (_$me.height() > _$me.width() ? LAYOUT_VERTICAL : LAYOUT_HORIZONTAL);
+            }
+            
+            // Add a helper class for the layout-mode
+            _$me.addClass(settings.layoutMode === LAYOUT_VERTICAL ? 'vertical' : 'horizontal');
+            
             // Show loading
             _$me.addClass('loading');
+            
             
             // Create the layout regions
             _layout();
@@ -326,14 +385,21 @@
          */
         function _formatDateRange(dates)
         {
+    
             var ret = [ _formatDate(dates.start) ];
+            
             if(dates.end)
             {
+            
                 if(!_datesEqual(dates.start, dates.end))
                 {
+            
                     ret.push(_formatDate(dates.end));
+                
                 }
+            
             }
+            
             return ret.join(' to ');
         }
         /**
@@ -347,6 +413,8 @@
         {	
             var pos;
             var periodStart = date.year ? date.year : date;
+            var cssProp = _isVertical() ? 'top' : 'left';
+                
             if(date.month && date.day)
             {
                 periodStart = (periodStart * 365) + (30 * date.month) + date.day;
@@ -375,11 +443,34 @@
 
                 if(periodStart >= timeScaleStart && periodStart < timeScaleEnd)
                 {
-                    pos = timescale.$div.offset().left + ((periodStart-timeScaleStart) * scale);
+                    pos = timescale.$div.offset()[cssProp] + ((periodStart-timeScaleStart) * scale);
                     return;
                 }	
             });
             return pos;
+        }
+        /**
+         * Set the layout mode
+         * 
+         * @param {int} newMode
+         * 
+         * @return {void}
+         */
+        function _setLayoutMode(newMode)
+        {
+            var oldMode = settings.layoutMode;
+            
+            if(newMode!==LAYOUT_VERTICAL)
+            {
+               newMode = LAYOUT_HORIZONTAL;
+            }
+            
+            if(newMode!==oldMode)
+            {
+                _debug(newMode);
+                _clear();
+                _create();
+            }
         }
         /**
          * Determine the left position and width of a feature
@@ -389,13 +480,16 @@
          * 
          * @returns {timeline_L1.$.fn.timeline._getLeftAndWidth.size}
          */
-        function _getLeftAndWidth(period, $element)
+        function _getOffsetAndWidth(period, $element)
         {	
             var size = {left:null, width:0};		
 		
             var timescales = settings.timescales;
             var periodStart = period.start.year ? period.start.year : period.start;
             var periodEnd = period.end.year ? period.end.year : period.end;
+            var axis = _isVertical() ? 'top' : 'left';
+            
+            
             if(period.start.month && period.start.day)
             {
                 periodStart = (periodStart * 365) + (30 * period.start.month) + period.start.day;
@@ -429,7 +523,7 @@
 
                 if(periodStart >= timeScaleStart && periodStart < timeScaleEnd)
                 {
-                    size.left = timescale.$div.position().left +  ((periodStart-timeScaleStart) * scale);
+                    size[axis] = timescale.$div.position()[axis] +  ((periodStart-timeScaleStart) * scale);
                 }	
 
                 if(!(timeScaleEnd < periodStart || timeScaleStart>periodEnd))
@@ -456,50 +550,73 @@
             return size;
         }
         /**
-         * Get the total width of the timeline
+         * Helper to determine if layout is vertical
          * 
-         * @returns {Number}
+         * @returns {Boolean}
          */
-        function _getWidth()
+        function _isVertical()
         {
-            var w = 0;
-            _$inner.find('>div').each(function(i,v){
-                var wn = $(v).offset().left + $(v).width();
-                w = wn;
-            });
-            return w;
+            return settings.layoutMode === LAYOUT_VERTICAL;
         }
         /**
-         * Layout the divs
+         * Layout the divs.
+         * 
+         * @todo Split this. It's does too much and is too complex
          * 
          * @returns {null}
          */
         function _layout()
         {            
+            _setLayoutMode(settings.layoutMode);
+            
+            var offsetProperty = _isVertical() ? 'top' : 'left';
+            var sizeProperty = _isVertical() ? 'height' : 'width';
+            
+            // Set the colour routine
             _rainbow.setNumberRange(0, settings.timescales.length);
             if(settings.colors)
             {
                 _rainbow.setSpectrumByArray(settings.colors);
-            } 
+            }
+            
+            // Add the mainn container
             _$inner = $('<main></main>').appendTo(_$me);
+            
+            // Add the main timescales
             $(settings.timescales).each(function(i, scale){
-                settings.timescales[i].left = i==0 ? 0 : _$inner.children().last().position().left+_$inner.children().last().width();
-                settings.timescales[i].$div = $('<div class="timespan"><h1>'+_formatYear(scale.start)+'</h1></div>').addClass(scale.class).appendTo(_$inner).css({
-                    backgroundColor: settings.colorMode=='rainbow' ? '#'+_rainbow.colorAt(i) : _randomGreyscale(),
-                    left: settings.timescales[i].left,
-                    width: scale.width
-                }).data('data', scale);                
+                
+                if(i===0)
+                {
+                    settings.timescales[i][offsetProperty] = 0;
+                }
+                else
+                {
+                    settings.timescales[i][offsetProperty] = _$inner.children().last().position()[offsetProperty]+(offsetProperty==='left' ? _$inner.children().last().width() : _$inner.children().last().height());
+                }
+                
+                settings.timescales[i].$div = $('<div class="timespan"><h1>'+_formatYear(scale.start)+'</h1></div>')
+                    .addClass(scale.class)
+                    .appendTo(_$inner)
+                    .css('backgroundColor', settings.colorMode === 'rainbow' ? '#'+_rainbow.colorAt(i) : _randomGreyscale())
+                    .css(offsetProperty, settings.timescales[i][offsetProperty])
+                    .css(sizeProperty, scale.width)
+                    .data('data', scale);
+                
                 _addScale(settings.timescales[i]);
             });
+            
+            // Add the periods
             $(settings.periods).each(function(i, period){
                 period.class = period.class ? 'period '+period.class : 'period';
                 _addFeature(period);
             });
+            
             // Scroll to date if required
             if(settings.startDate)
             {
                 _scrollToDate(settings.startDate);
-            }	
+            }
+            
             // Add event handlers
             _$inner
                 .mousedown(_onDrag)
@@ -514,7 +631,11 @@
                 .attr('tabindex', 1)
                 .focus()
                 .find('>div')
-                .dblclick(_regionExpand);	
+                .dblclick(_regionExpand);
+        
+            $(window).resize(function(e){
+                // todo
+            });
         }
         /**
          * Load data from a url
@@ -536,37 +657,13 @@
                     });
                     settings.data = settings.data.concat(data);
                     _$me.removeClass('loading');
-                    if(callback!=undefined)
+                    if(callback !== undefined)
                     {
                         callback();
                     }
                 },
                 url: url
-            })
-        }
-        /**
-         * Parse and add data
-         * 
-         * @param {object} v
-         */
-        function _addDataItem(v)
-        {
-            var top;
-            
-            /* 
-            // Undecided, but I think that stacking them, looks ugly, so sticking with random distribution for now
-            var date_hash = _dateHash(v.date.start);
-            _events_by_date[date_hash] ? _events_by_date[date_hash].push(v) : _events_by_date[date_hash] = [v];
-            top = 10+(10*_events_by_date[date_hash].length);
-            */
-            top = (10+(60 * Math.random()))+'%';
-            _addFeature({
-                content:settings.templateEvent.replace('[title]',v.title).replace('[date]',_formatDateRange(v.date)).replace('[description]',v.description).replace(/\[link\]/g,v.link).replace('[image]',v.image?'<img src="'+v.image+'"/>':''),
-                start:v.date.start,
-                end:(v.date.end ? v.date.end : v.date.start),
-                title:v.title,
-                top: top
-            }, 'event'+(true===v.keyEvent ? ' key-event' : '')+(v.image ? ' has-img' : '')+(v.class ? ' '+v.class : ''));
+            });
         }
         /**
          * Drag
@@ -577,13 +674,28 @@
          */
         function _onDrag(e)
         {
-            var s = e.clientX;
-            var sl = _$inner.scrollLeft();
-            _$inner.mousemove(function(e){
-               _$inner.scrollLeft(sl-(e.clientX-s));
-            }).mouseup(function(e){
-                $(e.currentTarget).unbind('mousemove').unbind('mouseup');
-            });
+            var s;
+            var sl;
+            if(settings.layoutMode==LAYOUT_VERTICAL)
+            {
+                s = e.clientY;
+                sl = _$inner.scrollTop();
+                _$inner.mousemove(function(e){
+                   _$inner.scrollTop(sl-(e.clientY-s));
+                }).mouseup(function(e){
+                    $(e.currentTarget).unbind('mousemove').unbind('mouseup');
+                });
+            }
+            else
+            {
+                s = e.clientX;
+                sl = _$inner.scrollLeft();
+                _$inner.mousemove(function(e){
+                   _$inner.scrollLeft(sl-(e.clientX-s));
+                }).mouseup(function(e){
+                    $(e.currentTarget).unbind('mousemove').unbind('mouseup');
+                });
+            }
         }
         /**
          * Expands an event
@@ -619,14 +731,30 @@
          */
         function _onKeyDown(e)
         {
-            switch(e.keyCode)
+            //alert(e.keyCode);
+            if(_isVertical())
             {
-                case 37:
-                    _scroll(_$inner.width()/4);
-                    break;
-                case 39:
-                    _scroll(-_$inner.width()/4);
-                    break;
+                switch(e.keyCode)
+                {
+                    case 38:
+                        _scroll(_$inner.height()/4);
+                        break;
+                    case 40:
+                        _scroll(-_$inner.height()/4);
+                        break;
+                }
+            }
+            else
+            {
+                switch(e.keyCode)
+                {
+                    case 37:
+                        _scroll(_$inner.width()/4);
+                        break;
+                    case 39:
+                        _scroll(-_$inner.width()/4);
+                        break;
+                }
             }
         }
         /*
@@ -790,9 +918,18 @@
          */
         function _scroll(d)
         {
-            _$inner.stop().animate({
-                scrollLeft: _$inner.scrollLeft() - d
-            });
+            if(settings.layoutMode==LAYOUT_VERTICAL)
+            {
+                _$inner.stop().animate({
+                    scrollTop: _$inner.scrollTop() - d
+                });
+            }
+            else
+            {
+                _$inner.stop().animate({
+                    scrollLeft: _$inner.scrollLeft() - d
+                });
+            }
         }
         /**
          * Scroll by an amount
@@ -803,8 +940,14 @@
          */
         function _scrollBy(n)
         {
-            //_debug(_$inner.scrollLeft()+','+_$inner.width());
-            _$inner.scrollLeft(_$inner.scrollLeft()-n);
+            if(settings.layoutMode==LAYOUT_VERTICAL)
+            {
+                _$inner.scrollTop(_$inner.scrollTop()-n);
+            }
+            else
+            {
+                _$inner.scrollLeft(_$inner.scrollLeft()-n);
+            }
         }
         /**
          * Scroll to a date
@@ -815,8 +958,17 @@
          */
         function _scrollToDate(date)
         {
-            var scrollTo = (_$me.parent().width()/2) - _getDatePosition(date);
-            _scroll(scrollTo);
+            var scrollTo;
+            if(settings.layoutMode==LAYOUT_VERTICAL)
+            {
+                scrollTo = (_$me.parent().width()/2) - _getDatePosition(date);
+                _scroll(scrollTo);
+            }
+            else
+            {
+                scrollTo = (_$me.parent().height()/2) - _getDatePosition(date);
+                _scroll(scrollTo);
+            }
         }
 
         return this.each(function() {
