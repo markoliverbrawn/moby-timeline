@@ -54,6 +54,48 @@
         "mangle": true,
         "sourcemaps": false
       }
+    },
+    "888e8df3": {
+      "id": "888e8df3",
+      "pid": "9e14d55b",
+      "name": "jquery.debug.js",
+      "input": "js\\src\\jquery.debug.js",
+      "customOutput": false,
+      "type": "Js",
+      "config": {
+        "autoCompile": true,
+        "uglify": true,
+        "mangle": true,
+        "sourcemaps": false
+      }
+    },
+    "181abfe7": {
+      "id": "181abfe7",
+      "pid": "9e14d55b",
+      "name": "jquery-touch-events.js",
+      "input": "js\\src\\jquery-touch-events.js",
+      "customOutput": false,
+      "type": "Js",
+      "config": {
+        "autoCompile": true,
+        "uglify": true,
+        "mangle": true,
+        "sourcemaps": false
+      }
+    },
+    "8de9ad86": {
+      "id": "8de9ad86",
+      "pid": "9e14d55b",
+      "name": "jquery-debug.js",
+      "input": "js\\src\\jquery-debug.js",
+      "customOutput": false,
+      "type": "Js",
+      "config": {
+        "autoCompile": true,
+        "uglify": true,
+        "mangle": true,
+        "sourcemaps": false
+      }
     }
   },
   "imports": {
@@ -71,6 +113,110 @@
       "path": "js\\src\\mousewheel.js",
       "parents": [
         "63e8345e"
+      ]
+    },
+    "fd52cf63": {
+      "id": "fd52cf63",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\font-awesome.scss",
+      "parents": [
+        "28da2981"
+      ]
+    },
+    "2e4cab7b": {
+      "id": "2e4cab7b",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_variables.scss",
+      "parents": [
+        "28da2981"
+      ]
+    },
+    "a3595e99": {
+      "id": "a3595e99",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_mixins.scss",
+      "parents": [
+        "28da2981"
+      ]
+    },
+    "d687f8fc": {
+      "id": "d687f8fc",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_path.scss",
+      "parents": [
+        "28da2981"
+      ]
+    },
+    "85848deb": {
+      "id": "85848deb",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_core.scss",
+      "parents": [
+        "28da2981"
+      ]
+    },
+    "8a3bad40": {
+      "id": "8a3bad40",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_larger.scss",
+      "parents": [
+        "28da2981"
+      ]
+    },
+    "ce0106cc": {
+      "id": "ce0106cc",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_fixed-width.scss",
+      "parents": [
+        "28da2981"
+      ]
+    },
+    "a83ddf22": {
+      "id": "a83ddf22",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_list.scss",
+      "parents": [
+        "28da2981"
+      ]
+    },
+    "90ddb0d6": {
+      "id": "90ddb0d6",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_bordered-pulled.scss",
+      "parents": [
+        "28da2981"
+      ]
+    },
+    "d1f2a667": {
+      "id": "d1f2a667",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_animated.scss",
+      "parents": [
+        "28da2981"
+      ]
+    },
+    "6667d7a3": {
+      "id": "6667d7a3",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_rotated-flipped.scss",
+      "parents": [
+        "28da2981"
+      ]
+    },
+    "c4f74502": {
+      "id": "c4f74502",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_stacked.scss",
+      "parents": [
+        "28da2981"
+      ]
+    },
+    "ec96729a": {
+      "id": "ec96729a",
+      "pid": "9e14d55b",
+      "path": "css\\src\\vendor\\font-awesome\\scss\\_icons.scss",
+      "parents": [
+        "28da2981"
       ]
     }
   },
@@ -619,10 +765,10 @@
   "config": {
     "watch": true,
     "liveRefresh": true,
-    "liveRefreshDelay": 0,
+    "liveRefreshDelay": "1000",
     "filterPatterns": "vendor,data,README.md",
-    "useCustomServer": false,
-    "customServerUrl": "",
+    "useCustomServer": true,
+    "customServerUrl": "http://squirrel.timeline",
     "cssPath": "../",
     "jsPath": "../",
     "htmlPath": "html/",

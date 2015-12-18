@@ -4,9 +4,9 @@ $fa-font-path:'src/vendor/font-awesome/fonts';
 $bg-event-color: #000;
 $bg-event-color-clone: #fff;
 $bg-event: rgba($bg-event-color, 0.95);
-$bg-event-clone: rgba($bg-event-color-clone, 0.95);
+$bg-event-clone: rgba($bg-event-color-clone, 0.95); 
 
-$font-color: #fff;
+$font-color: #fff;    
 $font-size: 14px;
 
 $padding: 5px;
@@ -159,13 +159,15 @@ div.timeline{
             right:0;
             top:0;
             z-index:$z-nav;
-        }
-        
+        }        
     }
     main{
         display:block;
         height:100%;
-        overflow:hidden;
+        overflow:auto;
+        @media (min-width:801px) {
+            overflow:hidden;
+        }
         position:relative;
         width:100%;
     }       

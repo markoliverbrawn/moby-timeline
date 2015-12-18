@@ -2839,9 +2839,14 @@ div.timeline button.close {
 div.timeline main {
   display: block;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
   width: 100%;
+}
+@media (min-width: 801px) {
+  div.timeline main {
+    overflow: hidden;
+  }
 }
 div.timeline .timespan:hover, div.timeline .period:hover {
   border: 5px solid rgba(255, 255, 255, 0.5);
