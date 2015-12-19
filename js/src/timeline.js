@@ -1,7 +1,6 @@
 // @prepros-prepend rainbow.js 
 // @prepros-prepend mousewheel.js 
 
-
 (function($){
     
     $.fn.timeline = function(options){
@@ -12,12 +11,10 @@
         // Private vars
         var _$me = $(this);
         var _$inner;
-        var _dragging = false;
-        var _events_by_date = {};
-        var _minDate;
-        var _maxDate;
+        //var _events_by_date = {};
+        //var _minDate;
+        //var _maxDate;
         var _rainbow = new Rainbow();
-        var _scrollInterval;
         var settings = $.extend({
             colorMode: '',
             data: [],
@@ -101,8 +98,7 @@
                 .css(axis2, feature.offset ? feature.offset : null)
                 .css(cssProp, style[cssProp])
                 .data('data', feature)
-                .html('<h2>'+feature.title+'</h2>'+(feature.content ? '<div>'+feature.content+'</div>' : ''))
-                .click(_onFeatureClick);
+                .html('<div><h2>'+feature.title+'</h2>'+(feature.content ? '<div>'+feature.content+'</div>' : '')+'</div>');
         
             // Add a class if the feature has one specified
             if(cls)
@@ -130,6 +126,10 @@
                         });
                         break;
                 }
+            }
+            else
+            {
+                feature.$div.click(_onFeatureClick);
             }
             // If there is a scale, then add it
             if(feature.interval)
@@ -163,9 +163,10 @@
                 });
             }
         }
-        function _clear()
+        function _clearFeatures()
         {
-            _$me.html('');
+            _$me.find('.event').unbind().remove();
+            settings.data = [];
         }
         /**
          * Creates the timeline
@@ -211,23 +212,7 @@
                 
                 setTimeout(function(){
                     
-                    // Does the data src specify it's own parser function?
-                    if(v.loadFunction && v.url)
-                    {
-                        v.loadFunction.call(me, v.url, me);
-                    }
-                    
-                    // Is the default loadFunction overidden?
-                    else if(settings.loadFunction)
-                    {
-                        settings.loadFunction.call(me, v, me);
-                    }
-                    
-                    // Default loadFunction
-                    else
-                    {
-                        _loadJSON(v);
-                    }
+                    _loadData.call(me, v);
                     
                 }, 500*i);
             });
@@ -638,6 +623,31 @@
             });
         }
         /**
+         * Load data
+         * 
+         * @param {string|object} src
+         */
+        function _loadData(src)
+        {
+            // Does the data src specify it's own parser function?
+            if(src.loadFunction && src.url)
+            {
+                src.loadFunction.call(this, src.url, this);
+            }
+
+            // Is the default loadFunction overidden?
+            else if(settings.loadFunction)
+            {
+                settings.loadFunction.call(this, src, this);
+            }
+
+            // Default loadFunction
+            else
+            {
+                _loadJSON(src);
+            }
+        }
+        /**
          * Load data from a url
          * 
          * @param {string}   url
@@ -708,10 +718,11 @@
         {
             var $el = $(e.currentTarget);
             var $parent = $el.closest('main');
-            var right = ($parent.width()-$parent.scrollLeft())<$el.offset().left+$el.find('h2').width();
+            var eventLeft = $el.offset().left;
+            var right = $parent.width() < eventLeft + $el.find('h2').width();
             var bottom = $parent.height()/2 < $el.offset().top;
             $el.removeClass('right').removeClass('bottom').toggleClass('active');
-            //_debug('('+_$inner.width()+'-'+_$inner.scrollLeft()+')<'+$el.offset().left+'+'+$el.find('h2').width()+')');
+            //_debug('('+$parent.width()+'+'+$parent.parent().width()+'-'+_$inner.scrollLeft()+')<'+$el.offset().left+'+'+$el.find('h2').width()+') = '+right);
             if(right)
             {
                 $el.addClass('right');
@@ -720,7 +731,7 @@
             {
                 $el.addClass('bottom');
             }
-            //_scroll($el.data('data').start);
+            _scrollToDate($el.data('data').start);
         }
         /*
          * Add keydown support for main timeline
@@ -834,6 +845,7 @@
                         left:-1,
                         position:'fixed'
                     });
+                    _debug(settings.data);
                     $(settings.data).each(function(i, v){
                         if(_dateWithinRange(v.date.start, $clone.data('data').start, $clone.data('data').end))
                         {
@@ -842,7 +854,7 @@
                                 start:v.date.start,
                                 end:(v.date.end ? v.date.end : v.date.start),
                                 title:v.title,
-                                top: (10+(50 * Math.random()))+'%'
+                                offset: (10+(50 * Math.random()))+'%'
                             }, 'event'+(true===v.keyEvent ? ' key-event' : '')+(v.image ? ' has-img' : ''), $clone);
                         }
                     });
@@ -1013,7 +1025,16 @@
                     top: null
                 }, item);                
                 _addDataItem(item);
+                settings.data.push(item);
             };
+            /**
+             * Clear events
+             * 
+             * @return {void}
+             */
+            this.clearFeatures = function(){
+                _clearFeatures(this);
+            }
             /**
              * Scroll to a date
              * 
@@ -1026,6 +1047,17 @@
                 _scrollToDate(date);
                 
             };
+            /**
+             * Load a data file
+             * 
+             * @param {string|object} src
+             */
+            this.loadData = function(src){
+                
+                _loadData.call(this, src);
+            
+            }
         });
     };
+
 }(jQuery));

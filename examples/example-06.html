@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        
+        <title>Collections Base Example</title>
+        
+        <!-- Include the timeline css -->
+        <link rel="stylesheet" href="../css/styles.css"/>
+        
+        <!-- The Examples css -->
+        <link rel="stylesheet" href="css/styles.css"/>
+        
+        <link href='https://fonts.googleapis.com/css?family=Tangerine:400,700|Roboto+Slab|Russo+One|UnifrakturMaguntia' rel='stylesheet' type='text/css'>
+        <!-- Fancy fonts -->
+        <style type="text/css">
+            .period.rotate h2,.timespan.rotate h2{opacity:0.1!important;text-shadow:5px 5px 0px #000;}
+            .rotate.script h2{font-family: 'Tangerine', cursive;font-size:50px!important;margin-bottom:-50px!important;}
+            .rotate.serif h2{font-family: 'Roboto Slab', serif;}
+            .rotate.sans h2{font-family: 'Russo One', sans-serif;font-size:40px!important;}
+            .rotate.old h2{font-family: 'UnifrakturMaguntia', cursive;font-size:40px!important;font-weight:normal!important;margin-bottom:-40px!important;}
+        </style>
+        
+        <!-- Timeline JS (requires jQuery) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="../js/timeline.min.js"></script>
+        
+    </head>
+    <body class="example e5 collectionsbase">
+        <div class="controls">
+        <input type="search" onchange="search(this.value)" placeholder="Search...">
+        </div>
+        <div class="timeline"></div>
+        <script>
+            /**
+             * This example deonstrates how you can create your own parsing function to 
+             * load any shape of events data you wish.
+             * 
+             * @param {string} url
+             * 
+             * @returns {void}
+             */
+            function customLoader(url)
+            {
+                // Context will be set as `timeline`
+                var me = this;
+                
+                // Eye candy
+                $(me).addClass('loading');
+                
+                // Load the data
+                $.ajax({
+                    // Set the data type
+                    dataType:'xml',
+                    // Success handler
+                    success: function(data){
+                        // Will use this to scroll to the first item that has been loaded
+                        var earliest = null;                
+                        // Iterate event items
+                        $(data).find('item').each(function(i,v){
+                            var year = parseInt($(v).find('temporal').text());
+                            if(isNaN(year)) return; // Only add dates where a year has been specified: Timeline does not yet support date-parsing
+                            
+                            // Call the public method: addItem to add the event
+                            me.addItem({
+                                title: $(v).find('title').text(),
+                                description: $(v).find('description').text(), 
+                                date: {
+                                    start:{
+                                        year:year
+                                    }
+                                },
+                                image: $(v).find('image url').text(),
+                                link: $(v).find('link').text(),
+                                keyEvent: Math.random()<=0.05
+                            });
+                            
+                            // Save the earliest date
+                            if(null===earliest || year < earliest) earliest = year;
+                        });
+                        // All done so remove the loading hint
+                        $(me).removeClass('loading');
+                        if(earliest) me.gotoDate(earliest);
+                    },
+                    url: url
+                });
+            }
+            /**
+             * Load data based on the search results: Query each simesppan in turn to populate them
+             * incrementally. This isn't mandatory, but helps create a spread of data across all.
+             * 
+             * @param {string} q
+             * 
+             * @returns {void}
+             */
+            function search(q)
+            {
+                timeline.clearFeatures();
+                $('.timespan').each(function(i,v){
+                    setTimeout(function(){
+                        timeline.loadData({
+                            loadFunction: customLoader,
+                            url: 'data/proxy.php?url=2&d1='+$(v).data('data').start+'&d2='+$(v).data('data').end+'&q='+q
+                        });
+                    },1000*i);
+                });
+            }            
+            // Create the timeline
+            var timeline = $('.timeline').timeline({
+                // Colours cycled based on those provided (rainbow or random).
+                colorMode: 'rainbow',
+                // Colors for the rainbow cycle
+                colors: ['330000','333333','000033'],
+                enableRegionExpand: true,
+                // A custom loadfunction to parse the data being loaded via ajax
+                loadFunction: customLoader,
+                // The date to start at
+                startDate:{
+                    year:1900
+                },
+                // Main timescales - different scales can be different widths to "zoom" particular time periods of interest
+                timescales:[
+                    {start: 0,end: 400,width: 400,interval: [100,200,300]},
+                    {start: 400,end: 1000,width: 600,interval: [500,600,700,800,900]},
+                    {start: 1000,end: 1600,width: 600,interval: [1100,1200,1300,1400,1500]},
+                    {start: 1600,end: 1900,width: 600,interval: [1700,1800]},
+                    {start: 1900,end: 1914,width: 280,interval: [1910]},
+                    {start: 1914,end: 1918,width: 300,interval: [1915,1916,1917]},
+                    {start: 1918,end: 1939,width: 300,interval: [1925,1930,1935]},
+                    {start: 1939,end: 1945,width: 300,interval: [1940,1941,1942,1943,1944]},
+                    {start: 1945,end: 2000,width: 500,interval: [1950,1960,1970,1980,1990]},
+                ],
+                periods:[
+                    {title:'Middle Ages',start: 400, end: 1600,class:'level-1'},
+                        {title:'Byzantine era',start: 330, end: 1453,class:'level-2 rotate'},
+                        //{title:'Dark Ages',start: 476, end: 800,class:'level-2 rotate'},
+                        {title:'Early Middle Ages',start: 500, end: 1000,class:'level-2 rotate old'},
+                            {title:'Viking Age ',start: 793, end: 1066,class:'level-2 rotate old'},
+                        {title:'High Middle Ages',start: 1000, end: 1300,class:'level-1 old'},
+                        {title:'Late Middle Ages',start: 1300, end: 1450,class:'level-1 old'},
+                            {title:'The Renaissance',start: 1300, end: 1750,class:'level-2 rotate'},
+                    {title:'Early Modern Period',start: 1450, end: 1750,class:'level-1'},
+                        {title:'Age of Discovery',start: 1400, end: 1700,class:'level-2 rotate serif'},
+                        //{title:'Polish Golden Age',start: 1650, end: 1730,class:'level-2 rotate'},
+                        {title:'Elizabethan Era',start: 1558, end: 1603,class:'level-2 rotate script'},
+                        //{title:'Protestant Reformation',start: 1500, end: 1600,class:'level-2 rotate'},
+                        {title:'Industrious Revolution',start: 1500, end: 1700,class:'level-2 rotate serif'},
+                        {title:'Jacobean Era',start: 1603, end: 1625,class:'level-2 rotate script'},
+                    {title:'Long Nineteenth Century',start: 1789, end: 1914,class:'level-1'},
+                        {title:'Georgian era',start: 1714, end: 0,class:'level-2 rotate script'},
+                        //{title:'Industrial Revolution',start: 1700, end: 1900,class:'level-2 rotate'},
+                        {title:'Romantic era',start: 1770, end: 1850,class:'level-2 rotate script'},
+                        {title:'Napoleonic era',start: 1799, end: 1815,class:'level-2 rotate serif'},
+                        {title:'Victorian era',start: 1837, end: 1901,class:'level-2 rotate'},
+                            {title:'Edwardian era',start: 1901, end: 1910,class:'level-2 rotate'},	
+                    {title:'20th Century',start: 1900, end:2000, class:'level-1'},
+                        {title:'World War I',start: 1914, end:1918, class:'level-2 rotate ww1'},
+                        {title:'',start: 1918, end:1939, class:'level-2 rotate twenties'},
+                        {title:'World War II',start: 1939, end:1945, class:'level-2 rotate ww2'},
+                        {title:'Cold War',start: 1950, end: 1991, class:'level-2 rotate sans'},
+                        {title:'Post-Cold War',start: 1991, end: 2000, class:'level-2'}
+                ]
+            })[0];
+            
+            (function($){
+                $('[type=search]').val('*:*').trigger('change');
+            }(jQuery));
+            
+        </script>
+    </body>
+</html>

@@ -12,7 +12,7 @@
   font-weight: normal;
   font-style: normal;
 }
-.fa, body.home a:before, body.example.full .event.military:before, body.example.full .event.naval:before, body.example.full .event.social:before, body.example.full .event.political:before, body.example.full .event.aviation:before {
+.fa, body.home h1 > a:before, body.example.full .event.military:before, body.example.full .event.naval:before, body.example.full .event.social:before, body.example.full .event.political:before, body.example.full .event.aviation:before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -44,7 +44,7 @@
   font-size: 5em;
 }
 
-.fa-fw, body.home a:before, body.example.full .event.military:before, body.example.full .event.naval:before, body.example.full .event.social:before, body.example.full .event.political:before, body.example.full .event.aviation:before {
+.fa-fw, body.home h1 > a:before, body.example.full .event.military:before, body.example.full .event.naval:before, body.example.full .event.social:before, body.example.full .event.political:before, body.example.full .event.aviation:before {
   width: 1.28571em;
   text-align: center;
 }
@@ -83,10 +83,10 @@
   float: right;
 }
 
-.fa.fa-pull-left, body.home a.fa-pull-left:before, body.example.full .fa-pull-left.event.military:before, body.example.full .fa-pull-left.event.naval:before, body.example.full .fa-pull-left.event.social:before, body.example.full .fa-pull-left.event.political:before, body.example.full .fa-pull-left.event.aviation:before {
+.fa.fa-pull-left, body.home h1 > a.fa-pull-left:before, body.example.full .fa-pull-left.event.military:before, body.example.full .fa-pull-left.event.naval:before, body.example.full .fa-pull-left.event.social:before, body.example.full .fa-pull-left.event.political:before, body.example.full .fa-pull-left.event.aviation:before {
   margin-right: .3em;
 }
-.fa.fa-pull-right, body.home a.fa-pull-right:before, body.example.full .fa-pull-right.event.military:before, body.example.full .fa-pull-right.event.naval:before, body.example.full .fa-pull-right.event.social:before, body.example.full .fa-pull-right.event.political:before, body.example.full .fa-pull-right.event.aviation:before {
+.fa.fa-pull-right, body.home h1 > a.fa-pull-right:before, body.example.full .fa-pull-right.event.military:before, body.example.full .fa-pull-right.event.naval:before, body.example.full .fa-pull-right.event.social:before, body.example.full .fa-pull-right.event.political:before, body.example.full .fa-pull-right.event.aviation:before {
   margin-left: .3em;
 }
 
@@ -99,10 +99,10 @@
   float: left;
 }
 
-.fa.pull-left, body.home a.pull-left:before, body.example.full .pull-left.event.military:before, body.example.full .pull-left.event.naval:before, body.example.full .pull-left.event.social:before, body.example.full .pull-left.event.political:before, body.example.full .pull-left.event.aviation:before {
+.fa.pull-left, body.home h1 > a.pull-left:before, body.example.full .pull-left.event.military:before, body.example.full .pull-left.event.naval:before, body.example.full .pull-left.event.social:before, body.example.full .pull-left.event.political:before, body.example.full .pull-left.event.aviation:before {
   margin-right: .3em;
 }
-.fa.pull-right, body.home a.pull-right:before, body.example.full .pull-right.event.military:before, body.example.full .pull-right.event.naval:before, body.example.full .pull-right.event.social:before, body.example.full .pull-right.event.political:before, body.example.full .pull-right.event.aviation:before {
+.fa.pull-right, body.home h1 > a.pull-right:before, body.example.full .pull-right.event.military:before, body.example.full .pull-right.event.naval:before, body.example.full .pull-right.event.social:before, body.example.full .pull-right.event.political:before, body.example.full .pull-right.event.aviation:before {
   margin-left: .3em;
 }
 
@@ -2752,11 +2752,11 @@ body.home h1 {
   font-size: 1em;
   margin: 0;
 }
-body.home a {
+body.home h1 > a {
   display: block;
   padding: 10px;
 }
-body.home a:before {
+body.home h1 > a:before {
   content: "\f054";
   margin-right: 10px;
 }
