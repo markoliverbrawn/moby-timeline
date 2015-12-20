@@ -15,11 +15,14 @@
         //var _minDate;
         //var _maxDate;
         var _rainbow = new Rainbow();
+        var _zoomFactor = 1;
         var settings = $.extend({
             colorMode: '',
             data: [],
             layoutMode: null,
             monthNames:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            onMove: function(){},
+            onZoom: function(){},
             src: [],
             templateEvent: '<span class="date">[date]</span><span class="description">[image][description]</span><a href="[link]" target="_blank">More...</a>'
         }, options );
@@ -169,6 +172,24 @@
             settings.data = [];
         }
         /**
+         * Convert a decimal year to a date
+         * @param {decimal} decimalDate
+         * @returns {Date}
+         */
+        function _convertDecimalDate(decimalDate) {
+            var year = parseInt(decimalDate);
+            var reminder = decimalDate - year;
+            var daysPerYear = (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) ? 366 : 365;
+            var miliseconds = reminder * daysPerYear * 24 * 60 * 60 * 1000;
+            var yearDate = new Date(year, 0, 1);
+            yearDate = new Date(yearDate.getTime() + miliseconds);
+            return {
+                year:year,
+                month:yearDate.getMonth()+1,
+                day:yearDate.getDate() 
+            };
+        }
+        /**
          * Creates the timeline
          * 
          * @returns {null}
@@ -218,6 +239,16 @@
             });
             
             return this;
+        }
+        /**
+         * Get the date at the current centre of screen
+         * 
+         * @returns {object}
+         */
+        function _currentDateAtCentre()
+        {
+            var centre = _isVertical() ? _$inner.offsetTop() + _$me.height()/2 : _$inner.offsetLeft() + _$me.width()/2;
+            return _getDateAt(centre);
         }
         /**
          * Helper to determine if 2 days are equal
@@ -351,17 +382,6 @@
             return ret;
         }
         /**
-         * Format a number with 1000s separator
-         * 
-         * @param {type} x
-         * 
-         * @returns {string}
-         */
-        function _numberWithCommas(x) 
-        {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-        /**
          * Get a formatted date range
          * 
          * @param {object} dates
@@ -386,6 +406,42 @@
             }
             
             return ret.join(' to ');
+        }
+        /**
+         * Get the date at a position
+         * 
+         * @param {int} pos
+         */
+        function _getDateAt(pos)
+        {
+            var csspos = _isVertical() ? 'top' : 'left';
+            var size = _isVertical() ? 'height' : 'width';
+            var date = {};
+            
+            //pos += _$inner[offsetFn]();
+            
+            $(settings.timescales).each(function(i, timescale){
+                var left = timescale.$div.position()[csspos];
+                var right = left + timescale.$div[size]();
+                if(left <= pos && left + right >= pos)
+                {
+                    var relativePos = (pos - left)/(right - left);
+                    var yearRange = timescale.end - timescale.start;
+                    date.year = timescale.start + (yearRange * relativePos);
+                    if(date.year < 1000)
+                    {
+                        date.string = _formatDate(date.year.toFixed(0));
+                    }
+                    else if(date.year)
+                    {
+                        // Add day/month info
+                        date.string = _formatDate(_convertDecimalDate(date.year));
+                    }
+                    return;
+                }
+            });
+            
+            return date;
         }
         /**
          * Determine the left position of a date
@@ -433,29 +489,6 @@
                 }	
             });
             return pos;
-        }
-        /**
-         * Set the layout mode
-         * 
-         * @param {int} newMode
-         * 
-         * @return {void}
-         */
-        function _setLayoutMode(newMode)
-        {
-            var oldMode = settings.layoutMode;
-            
-            if(newMode!==LAYOUT_VERTICAL)
-            {
-               newMode = LAYOUT_HORIZONTAL;
-            }
-            
-            if(newMode!==oldMode)
-            {
-                _debug(newMode);
-                _clear();
-                _create();
-            }
         }
         /**
          * Determine the left position and width of a feature
@@ -676,6 +709,17 @@
             });
         }
         /**
+         * Format a number with 1000s separator
+         * 
+         * @param {type} x
+         * 
+         * @returns {string}
+         */
+        function _numberWithCommas(x) 
+        {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        /**
          * Drag
          * 
          * @param {event} e
@@ -684,9 +728,10 @@
          */
         function _onDrag(e)
         {
+            var me = this;
             var s;
             var sl;
-            if(settings.layoutMode==LAYOUT_VERTICAL)
+            if(_isVertical())
             {
                 s = e.clientY;
                 sl = _$inner.scrollTop();
@@ -695,6 +740,8 @@
                 }).mouseup(function(e){
                     $(e.currentTarget).unbind('mousemove').unbind('mouseup');
                 });
+                
+                settings.onMove.call(me);
             }
             else
             {
@@ -705,6 +752,8 @@
                 }).mouseup(function(e){
                     $(e.currentTarget).unbind('mousemove').unbind('mouseup');
                 });
+                
+                settings.onMove.call(me);
             }
         }
         /**
@@ -854,7 +903,7 @@
                                 start:v.date.start,
                                 end:(v.date.end ? v.date.end : v.date.start),
                                 title:v.title,
-                                offset: (10+(50 * Math.random()))+'%'
+                                offset:(10+(50 * Math.random()))+'%'
                             }, 'event'+(true===v.keyEvent ? ' key-event' : '')+(v.image ? ' has-img' : ''), $clone);
                         }
                     });
@@ -942,6 +991,31 @@
                     scrollLeft: _$inner.scrollLeft() - d
                 });
             }
+            
+            settings.onMove.call(this);
+        }
+        /**
+         * Set the layout mode
+         * 
+         * @param {int} newMode
+         * 
+         * @return {void}
+         */
+        function _setLayoutMode(newMode)
+        {
+            var oldMode = settings.layoutMode;
+            
+            if(newMode!==LAYOUT_VERTICAL)
+            {
+               newMode = LAYOUT_HORIZONTAL;
+            }
+            
+            if(newMode!==oldMode)
+            {
+                _debug(newMode);
+                _clear();
+                _create();
+            }
         }
         /**
          * Scroll by an amount
@@ -960,6 +1034,8 @@
             {
                 _$inner.scrollLeft(_$inner.scrollLeft()-n);
             }
+            
+            settings.onMove.call(this);
         }
         /**
          * Scroll to a date
@@ -981,6 +1057,33 @@
                 scrollTo = (_$me.parent().height()/2) - _getDatePosition(date);
                 _scroll(scrollTo);
             }
+            
+            settings.onMove.call(this);
+        }
+        /**
+         * Zoom it
+         * 
+         * @param {integer} factor
+         * 
+         * @return {void}
+         */
+        function _zoom(factor)
+        {
+            var oldZoom = settings._zoomFactor;
+            settings._zoomFactor = factor;
+            _$inner.find('>div').each(function(i,v){
+                var updates = _isVertical() ? {
+                    height:$(v).height()*factor,
+                    top:$(v).offset().top*factor,
+                    transition: 'height 0.1s, top 0.1s'
+                } : {
+                    left:$(v).offset().left*factor,
+                    transition: 'left 0.1s, width 0.1s',
+                    width:$(v).width()*factor
+                };
+                $(v).css(updates);
+            });
+            settings.onZoom.call(this, oldZoom, factor);
         }
 
         return this.each(function() {
@@ -1036,6 +1139,17 @@
                 _clearFeatures(this);
             }
             /**
+             * Get the date at a pixel
+             * @param {int} x
+             * @param {int} y
+             * @returns {object}
+             */
+            this.getDateAtXY = function(x,y){
+                
+                return _isVertical() ? _getDateAt(y) : _getDateAt(x);
+                
+            };
+            /**
              * Scroll to a date
              * 
              * @param {object} date
@@ -1057,6 +1171,14 @@
                 _loadData.call(this, src);
             
             }
+            /**
+             * Zoom it
+             * 
+             * @param integer factor
+             */
+            this.zoom = function(factor){
+                _zoom.call(this, factor);
+            };
         });
     };
 

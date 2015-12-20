@@ -33,6 +33,10 @@ body{
             &>a{
                 display:block;
                 padding:10px;
+                text-decoration:none;
+                &:hover{
+                    background:rgba(#fff,0.5);
+                }
                 &:before{
                     @extend .fa;
                     @extend .fa-fw;
@@ -67,7 +71,6 @@ body{
 
     &.example{
         font-family: 'Lato', sans-serif;
-        
         /**
          * Full example: Demonstrated how you might "iconify" the event markers using Font-awesome.
          */
@@ -252,23 +255,48 @@ body{
             }
         }
         &.e5{
-            .controls{
-                background:#fff;
-                color:#fff;
-                list-style:none;
-                margin:0;
-                padding:10px;
-                position:fixed;
-                right:20px;
-                top:10px;
-                z-index:1000000;
-                li{
-                    color:#000;
-                    cursor: pointer;
-                }
-            }
             .timespan{
                 border:none!important;
+            }
+        }
+        
+        .controls{
+            background:rgba(#000,0.5);
+            color:#fff;
+            list-style:none;
+            margin:0;
+            padding:10px;
+            position:fixed;
+            right:20px;
+            top:10px;
+            z-index:1000000;
+            li{
+                cursor: pointer;
+                opacity:0.5;
+                &:before{
+                    @extend .fa;
+                    content:$fa-var-angle-right;
+                    margin-right:5px;
+                }
+                &:hover{
+                    opacity:1;
+                }
+            }
+            &.left{
+                background:#000;
+                font-size:10px;
+                left:0;
+                opacity:0.5;
+                right:auto;
+                text-shadow:2px 2px 0px #000;
+                top:0;
+                white-space:nowrap;
+                z-index:1000001;
+                &:before{
+                    @extend .fa;
+                    content:$fa-var-eyedropper;
+                    margin-right:10px;
+                }
             }
         }
     }

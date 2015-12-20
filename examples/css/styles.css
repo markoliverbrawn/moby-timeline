@@ -12,7 +12,7 @@
   font-weight: normal;
   font-style: normal;
 }
-.fa, body.home h1 > a:before, body.example.full .event.military:before, body.example.full .event.naval:before, body.example.full .event.social:before, body.example.full .event.political:before, body.example.full .event.aviation:before {
+.fa, body.home h1 > a:before, body.example.full .event.military:before, body.example.full .event.naval:before, body.example.full .event.social:before, body.example.full .event.political:before, body.example.full .event.aviation:before, body.example .controls li:before, body.example .controls.left:before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -83,10 +83,10 @@
   float: right;
 }
 
-.fa.fa-pull-left, body.home h1 > a.fa-pull-left:before, body.example.full .fa-pull-left.event.military:before, body.example.full .fa-pull-left.event.naval:before, body.example.full .fa-pull-left.event.social:before, body.example.full .fa-pull-left.event.political:before, body.example.full .fa-pull-left.event.aviation:before {
+.fa.fa-pull-left, body.home h1 > a.fa-pull-left:before, body.example.full .fa-pull-left.event.military:before, body.example.full .fa-pull-left.event.naval:before, body.example.full .fa-pull-left.event.social:before, body.example.full .fa-pull-left.event.political:before, body.example.full .fa-pull-left.event.aviation:before, body.example .controls li.fa-pull-left:before, body.example .fa-pull-left.controls.left:before {
   margin-right: .3em;
 }
-.fa.fa-pull-right, body.home h1 > a.fa-pull-right:before, body.example.full .fa-pull-right.event.military:before, body.example.full .fa-pull-right.event.naval:before, body.example.full .fa-pull-right.event.social:before, body.example.full .fa-pull-right.event.political:before, body.example.full .fa-pull-right.event.aviation:before {
+.fa.fa-pull-right, body.home h1 > a.fa-pull-right:before, body.example.full .fa-pull-right.event.military:before, body.example.full .fa-pull-right.event.naval:before, body.example.full .fa-pull-right.event.social:before, body.example.full .fa-pull-right.event.political:before, body.example.full .fa-pull-right.event.aviation:before, body.example .controls li.fa-pull-right:before, body.example .fa-pull-right.controls.left:before {
   margin-left: .3em;
 }
 
@@ -99,10 +99,10 @@
   float: left;
 }
 
-.fa.pull-left, body.home h1 > a.pull-left:before, body.example.full .pull-left.event.military:before, body.example.full .pull-left.event.naval:before, body.example.full .pull-left.event.social:before, body.example.full .pull-left.event.political:before, body.example.full .pull-left.event.aviation:before {
+.fa.pull-left, body.home h1 > a.pull-left:before, body.example.full .pull-left.event.military:before, body.example.full .pull-left.event.naval:before, body.example.full .pull-left.event.social:before, body.example.full .pull-left.event.political:before, body.example.full .pull-left.event.aviation:before, body.example .controls li.pull-left:before, body.example .pull-left.controls.left:before {
   margin-right: .3em;
 }
-.fa.pull-right, body.home h1 > a.pull-right:before, body.example.full .pull-right.event.military:before, body.example.full .pull-right.event.naval:before, body.example.full .pull-right.event.social:before, body.example.full .pull-right.event.political:before, body.example.full .pull-right.event.aviation:before {
+.fa.pull-right, body.home h1 > a.pull-right:before, body.example.full .pull-right.event.military:before, body.example.full .pull-right.event.naval:before, body.example.full .pull-right.event.social:before, body.example.full .pull-right.event.political:before, body.example.full .pull-right.event.aviation:before, body.example .controls li.pull-right:before, body.example .pull-right.controls.left:before {
   margin-left: .3em;
 }
 
@@ -2755,6 +2755,10 @@ body.home h1 {
 body.home h1 > a {
   display: block;
   padding: 10px;
+  text-decoration: none;
+}
+body.home h1 > a:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
 body.home h1 > a:before {
   content: "\f054";
@@ -3046,8 +3050,11 @@ body.example.e4 div.timeline .period h2 {
 body.example.e4 div.timeline .event.active * {
   color: #fff;
 }
-body.example.e5 .controls {
-  background: #fff;
+body.example.e5 .timespan {
+  border: none !important;
+}
+body.example .controls {
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   list-style: none;
   margin: 0;
@@ -3057,10 +3064,29 @@ body.example.e5 .controls {
   top: 10px;
   z-index: 1000000;
 }
-body.example.e5 .controls li {
-  color: #000;
+body.example .controls li {
   cursor: pointer;
+  opacity: 0.5;
 }
-body.example.e5 .timespan {
-  border: none !important;
+body.example .controls li:before {
+  content: "\f105";
+  margin-right: 5px;
+}
+body.example .controls li:hover {
+  opacity: 1;
+}
+body.example .controls.left {
+  background: #000;
+  font-size: 10px;
+  left: 0;
+  opacity: 0.5;
+  right: auto;
+  text-shadow: 2px 2px 0px #000;
+  top: 0;
+  white-space: nowrap;
+  z-index: 1000001;
+}
+body.example .controls.left:before {
+  content: "\f1fb";
+  margin-right: 10px;
 }

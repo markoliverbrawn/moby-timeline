@@ -18,6 +18,12 @@
         
     </head>
     <body class="example full">
+        <!-- @todo
+            <div class="controls zoom">
+                <input type="number" value="1" step="0.1" min="0.1" max="10" onchange="timeline.zoom(this.value)"/>
+            </div>
+        -->
+        <div class="controls left"></div>
         <div class="timeline"></div>
         <script>
             /**
@@ -52,7 +58,7 @@
             }
             
             // Create the timeline
-            $('.timeline').timeline({
+            var timeline = $('.timeline').timeline({
                 // Colours cycled based on those provided (rainbow or random).
                 colorMode: 'rainbow',
                 // Colors for the rainbow cycle
@@ -61,7 +67,10 @@
                 loadFunction: customLoader,
                 // The date to start at
                 startDate:{
-                    //year: -150000000
+                    year: 1920
+                },
+                onMove: function(from, to){
+                    //alert('test');
                 },
                 // Main timescales - different scales can be different widths to "zoom" particular time periods of interest
                 timescales:[
@@ -127,6 +136,17 @@
                     'data/09.js',
                     'data/ww1.js'
                 ]
+            })[0];
+            
+            /**
+             * I have purposely not added an info "control" within the time class (or any others). 
+             * This is to keep the code free of clutter that may not be used anyway. Instead, I
+             * added a "getDateAtXY" helper function which can be called to get info about the 
+             * date at a particular pixel. As you can see, the implementation of a "show date 
+             * info for mouse position" is then trivial.
+             */
+            $('.timeline').mousemove(function(e){
+                $('.controls.left').html(timeline.getDateAtXY(e.clientX, e.clientY).string);
             });
         </script>
     </body>
