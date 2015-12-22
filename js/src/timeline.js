@@ -24,7 +24,8 @@
             onMove: function(){},
             onZoom: function(){},
             src: [],
-            templateEvent: '<span class="date">[date]</span><span class="description">[image][description]</span><a href="[link]" target="_blank">More...</a>'
+            templateEvent: '<span class="date">[date]</span><span class="description">[image][description]</span><a href="[link]" target="_blank">More...</a>',
+            zoomSpeed: 0.05
         }, options );
         
         // Private functions  
@@ -139,6 +140,9 @@
             {
                 _addScale(feature);
             }
+            
+            // Save this for referencing when zooming
+            _cacheOriginalStyle(feature.$div);
         }
         /**
          * Add scale ticks
@@ -159,13 +163,38 @@
                     .appendTo(item.$div);
             
                 $(item.interval).each(function(i, v){
-                    $ul
-                        .append($('<li></li>')
+                    var $li = $('<li></li>')
                         .css(cssProp2, (cssProp2=='left' ? _getDatePosition(v) - item.$div.offset().left : _getDatePosition(v) - item.$div.offset().top))
-                        .html(_formatDate(v)));
+                        .html(_formatDate(v))
+                        .appendTo($ul);
+                    
+                    _cacheOriginalStyle($li);
                 });
             }
         }
+        /**
+         * Cache the position and size of an element
+         * 
+         * @param {jquery} $el
+         * 
+         * @return {void}
+         */
+        function _cacheOriginalStyle($el)
+        {
+            // Save this for referencing when zooming
+            $el.data('originalStyle', {
+                height: $el.height(),
+                left: _isFeature($el)? $el.offset().left+$el.parent().scrollLeft() : $el.position().left,
+                top: _isFeature($el)? $el.offset().top+$el.parent().scrollTop() : $el.position().top,
+                width: $el.width(),
+            });
+
+        }
+        /*
+         * Clear all features
+         * 
+         * @return {void}
+         */
         function _clearFeatures()
         {
             _$me.find('.event').unbind().remove();
@@ -247,7 +276,7 @@
          */
         function _currentDateAtCentre()
         {
-            var centre = _isVertical() ? _$inner.offsetTop() + _$me.height()/2 : _$inner.offsetLeft() + _$me.width()/2;
+            var centre = _isVertical() ? _$inner.offset().top + _$me.height()/2 : _$inner.offset().left + _$me.width()/2;
             return _getDateAt(centre);
         }
         /**
@@ -480,12 +509,12 @@
                     timeScaleEnd*=12;
                 }
                 
-                var scale =  timescale.width / ( timeScaleEnd - timeScaleStart ) ;
+                var scale =  (timescale.width) / ( timeScaleEnd - timeScaleStart ) ;
 
                 if(periodStart >= timeScaleStart && periodStart < timeScaleEnd)
                 {
                     pos = timescale.$div.offset()[cssProp] + ((periodStart-timeScaleStart) * scale);
-                    return;
+                    return pos * _zoomFactor;
                 }	
             });
             return pos;
@@ -568,6 +597,27 @@
             return size;
         }
         /**
+         * Cache the position and size of an element
+         * 
+         * @param {jquery} $el
+         * 
+         * @return {object}
+         */
+        function _getOriginalStyle($el)
+        {
+            // Save this for referencing when zooming
+            return $el.data('originalStyle');
+        }   
+        /**
+         * Dtermine if an element if a feature (event)
+         * @param {jquery} $el
+         * @returns {boolean}
+         */
+        function _isFeature($el)
+        {
+            return $el.hasClass('event');
+        }
+        /**
          * Helper to determine if layout is vertical
          * 
          * @returns {Boolean}
@@ -619,7 +669,11 @@
                     .css(offsetProperty, settings.timescales[i][offsetProperty])
                     .css(sizeProperty, scale.width)
                     .data('data', scale);
+            
+                // Save this for referencing when zooming
+                _cacheOriginalStyle(settings.timescales[i].$div);
                 
+                // Add a scale
                 _addScale(settings.timescales[i]);
             });
             
@@ -1070,19 +1124,21 @@
         function _zoom(factor)
         {
             var oldZoom = settings._zoomFactor;
-            settings._zoomFactor = factor;
-            _$inner.find('>div').each(function(i,v){
+            _zoomFactor = factor;
+            _$inner.find('>div, .scale li').each(function(i,v){
+                var d = _getOriginalStyle($(v));
                 var updates = _isVertical() ? {
-                    height:$(v).height()*factor,
-                    top:$(v).offset().top*factor,
-                    transition: 'height 0.1s, top 0.1s'
+                    height:d.height * factor,
+                    top:d.top * factor,
+                    transition: 'height '+settings.zoomSpeed+'s, top '+settings.zoomSpeed+'s'
                 } : {
-                    left:$(v).offset().left*factor,
-                    transition: 'left 0.1s, width 0.1s',
-                    width:$(v).width()*factor
+                    left:(d.left * factor),
+                    transition: 'left '+settings.zoomSpeed+'s, width '+settings.zoomSpeed+'s',
+                    width:d.width * factor
                 };
                 $(v).css(updates);
             });
+            _$inner.scrollLeft(_$inner.scrollLeft()*factor);
             settings.onZoom.call(this, oldZoom, factor);
         }
 
