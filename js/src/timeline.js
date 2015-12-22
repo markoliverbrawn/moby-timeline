@@ -25,7 +25,7 @@
             onZoom: function(){},
             src: [],
             templateEvent: '<span class="date">[date]</span><span class="description">[image][description]</span><a href="[link]" target="_blank">More...</a>',
-            zoomSpeed: 0.05
+            zoomSpeed: 0.1
         }, options );
         
         // Private functions  
