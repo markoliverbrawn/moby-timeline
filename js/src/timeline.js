@@ -44,20 +44,23 @@
             _events_by_date[date_hash] ? _events_by_date[date_hash].push(v) : _events_by_date[date_hash] = [v];
             offset = 10+(10*_events_by_date[date_hash].length);
             */
-            if(_isVertical())
+            if(!v.offset)
             {
-                offset = (20+(70 * Math.random()))+'%';
-            }
-            else
-            {
-                offset = (10+(60 * Math.random()))+'%';
+                if(_isVertical())
+                {
+                    v.offset = (20+(70 * Math.random()))+'%';
+                }
+                else
+                {
+                    v.offset = (10+(60 * Math.random()))+'%';
+                }
             }
             _addFeature({
                 content:settings.templateEvent.replace('[title]',v.title).replace('[date]',_formatDateRange(v.date)).replace('[description]',v.description).replace(/\[link\]/g,v.link).replace('[image]',v.image?'<img src="'+v.image+'"/>':''),
                 start:v.date.start,
                 end:(v.date.end ? v.date.end : v.date.start),
                 title:v.title,
-                offset: offset
+                offset: v.offset
             }, 'event'+(true===v.keyEvent ? ' key-event' : '')+(v.image ? ' has-img' : '')+(v.class ? ' '+v.class : ''));
         }
         /**

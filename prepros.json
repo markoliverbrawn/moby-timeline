@@ -37,7 +37,7 @@
         "debug": false,
         "compass": false,
         "fullCompass": false,
-        "outputStyle": "expanded",
+        "outputStyle": "compressed",
         "autoprefixer": false
       }
     },

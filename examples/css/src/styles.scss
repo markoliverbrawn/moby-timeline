@@ -117,6 +117,16 @@ body{
                     width:100%;
                 }
             }
+            .miocene:before{
+                background-color:#000;
+                background-image: url("../img/miocene.jpg");
+                opacity:0.1;
+            }
+            .extinction:before{
+                background-color:#000;
+                background-image: url("../img/extinction.jpg");
+                opacity:0.2;
+            }
             .primordial:before{
                 background-color:#000;
                 background-image: url("../img/primordial.jpg");
