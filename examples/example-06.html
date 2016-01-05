@@ -41,7 +41,7 @@
              * 
              * @returns {void}
              */
-            function customLoader(url)
+            function customLoader(url, callback)
             {
                 // Context will be set as `timeline`
                 var me = this;
@@ -75,10 +75,10 @@
                                 link: $(v).find('link').text(),
                                 keyEvent: Math.random()<=0.05
                             });
-                            
                             // Save the earliest date
                             if(null===earliest || year < earliest) earliest = year;
                         });
+                        callback();
                         // All done so remove the loading hint
                         $(me).removeClass('loading');
                         if(earliest) me.gotoDate(earliest);

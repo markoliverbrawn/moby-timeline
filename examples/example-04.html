@@ -29,7 +29,7 @@
              * 
              * @returns {void}
              */
-            function customLoader(url)
+            function customLoader(url, callback)
             {
                 // Context will be set as `timeline`
                 var me = this;
@@ -56,6 +56,7 @@
                             });
                         });
                         // All done so remove the loading hint
+                        callback();
                         $(me).removeClass('loading');
                     },
                     url: url

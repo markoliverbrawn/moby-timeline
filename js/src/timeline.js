@@ -11,7 +11,7 @@
         // Private vars
         var _$me = $(this);
         var _$inner;
-        //var _events_by_date = {};
+        var _events_by_date = {};
         //var _minDate;
         //var _maxDate;
         var _rainbow = new Rainbow();
@@ -37,22 +37,18 @@
          */
         function _addDataItem(v)
         {
-            var offset;
-            /* 
-            // Undecided, but I think that stacking them, looks ugly, so sticking with random distribution for now
-            var date_hash = _dateHash(v.date.start);
-            _events_by_date[date_hash] ? _events_by_date[date_hash].push(v) : _events_by_date[date_hash] = [v];
-            offset = 10+(10*_events_by_date[date_hash].length);
-            */
+            //var date_hash = _dateHash(v.date.start);
+            //_events_by_date[date_hash] ? _events_by_date[date_hash].push(v) : _events_by_date[date_hash] = [v];
+            
             if(!v.offset)
             {
                 if(_isVertical())
                 {
-                    v.offset = (20+(70 * Math.random()))+'%';
+                    //v.offset = (20+(70 * Math.random()))+'%';
                 }
                 else
                 {
-                    v.offset = (10+(60 * Math.random()))+'%';
+                    //v.offset = (10+(60 * Math.random()))+'%';
                 }
             }
             _addFeature({
@@ -60,7 +56,8 @@
                 start:v.date.start,
                 end:(v.date.end ? v.date.end : v.date.start),
                 title:v.title,
-                offset: v.offset
+                //offset: v.offset,
+                data: v
             }, 'event'+(true===v.keyEvent ? ' key-event' : '')+(v.image ? ' has-img' : '')+(v.class ? ' '+v.class : ''));
         }
         /**
@@ -107,6 +104,10 @@
                 .data('data', feature)
                 .html('<div><h2>'+feature.title+'</h2>'+(feature.content ? '<div>'+feature.content+'</div>' : '')+'</div>');
         
+            if(feature.data)
+            {
+                feature.data.$div = feature.$div;
+            }
             // Add a class if the feature has one specified
             if(cls)
             {
@@ -249,13 +250,12 @@
             // Load data if specified by config
             if(settings.data)
             {
-                
                 $(settings.data).each(function(i,v){
                     
                     _addDataItem(v);    
                     
                 });
-                
+                _onDataLoaded();
                 _$me.removeClass('loading');
                 
             }
@@ -315,7 +315,12 @@
          */
         function _dateHash(date)
         {
-            return ( date.year ? date.year : date )+'-'+( date.month ? date.month : '00' );//+'-'+( date.day ? date.day : '00' );
+            var y = date.year ? date.year : date;
+            var m = date.month ? date.month : 1;
+            var ym = y * m;
+            
+            return ym;
+            //return ( date.year ? date.year : date )+'-'+( date.month ? date.month : '00' );//+'-'+( date.day ? date.day : '00' );
         }
         /**
          * Determine if a date item is between 2 others
@@ -720,21 +725,21 @@
         function _loadData(src)
         {
             // Does the data src specify it's own parser function?
-            if(src.loadFunction && src.url)
+            if(src && src.loadFunction && src.url)
             {
-                src.loadFunction.call(this, src.url, this);
+                src.loadFunction.call(this, src.url, _onDataLoaded);
             }
-
+        
             // Is the default loadFunction overidden?
             else if(settings.loadFunction)
             {
-                settings.loadFunction.call(this, src, this);
+                settings.loadFunction.call(this, src, _onDataLoaded);
             }
 
             // Default loadFunction
             else
             {
-                _loadJSON(src);
+                _loadJSON(src, _onDataLoaded);
             }
         }
         /**
@@ -775,6 +780,30 @@
         function _numberWithCommas(x) 
         {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        /**
+         * Called when data has finished being added. Realigns the data
+         * 
+         * @return {void}
+         */
+        function _onDataLoaded()
+        {
+            // First sort the data by date
+            settings.data.sort(function(a, b){
+                var am = a.date.start.month ? a.date.start.month : 0;
+                var bm = b.date.start.month ? b.date.start.month : 0;
+                return ~~((a.date.start.year * 12) + am >= (b.date.start.year * 12) + bm ? 1 : -1);
+            });
+            // Then re-render
+            var offset = 110;
+            $.each(settings.data, function(i, v){
+                if(!v.offset)
+                {
+                    offset = offset+ (5 + Math.random());// Random is so that long running events don't obsure shorter ones
+                    if(offset>90) offset = 5;
+                    v.$div.css(_isVertical() ? 'left' : 'top', offset+'%');
+                }
+            });
         }
         /**
          * Drag

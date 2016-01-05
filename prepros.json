@@ -78,8 +78,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\font-awesome.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     },
     "2e4cab7b": {
@@ -87,8 +87,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\_variables.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     },
     "a3595e99": {
@@ -96,8 +96,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\_mixins.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     },
     "d687f8fc": {
@@ -105,8 +105,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\_path.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     },
     "85848deb": {
@@ -114,8 +114,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\_core.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     },
     "8a3bad40": {
@@ -123,8 +123,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\_larger.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     },
     "ce0106cc": {
@@ -132,8 +132,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\_fixed-width.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     },
     "a83ddf22": {
@@ -141,8 +141,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\_list.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     },
     "90ddb0d6": {
@@ -150,8 +150,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\_bordered-pulled.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     },
     "d1f2a667": {
@@ -159,8 +159,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\_animated.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     },
     "6667d7a3": {
@@ -168,8 +168,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\_rotated-flipped.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     },
     "c4f74502": {
@@ -177,8 +177,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\_stacked.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     },
     "ec96729a": {
@@ -186,8 +186,8 @@
       "pid": "9e14d55b",
       "path": "css\\src\\vendor\\font-awesome\\scss\\_icons.scss",
       "parents": [
-        "28da2981",
-        "a2a43bf1"
+        "a2a43bf1",
+        "28da2981"
       ]
     }
   },
@@ -730,6 +730,26 @@
       "name": "300_7828_2_165_031.jpg",
       "type": "Jpg",
       "initialSize": 70752,
+      "status": "NOT_OPTIMIZED"
+    },
+    "372a98c5": {
+      "id": "372a98c5",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\extinction.jpg",
+      "size": 303863,
+      "name": "extinction.jpg",
+      "type": "Jpg",
+      "initialSize": 303863,
+      "status": "NOT_OPTIMIZED"
+    },
+    "a84df46f": {
+      "id": "a84df46f",
+      "pid": "9e14d55b",
+      "path": "examples\\img\\miocene.jpg",
+      "size": 156496,
+      "name": "miocene.jpg",
+      "type": "Jpg",
+      "initialSize": 156496,
       "status": "NOT_OPTIMIZED"
     }
   },

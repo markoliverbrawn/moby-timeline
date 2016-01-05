@@ -30,7 +30,7 @@
              * @param {string} url
              * @returns {void}
              */
-            function customLoader(url)
+            function customLoader(url, callback)
             {
                 var me = this;
                 $(me).addClass('loading');
@@ -49,6 +49,10 @@
                                 top: v.top
                             });
                         });
+                        if(callback!==undefined)
+                        {
+                            try{callback();}catch(e){}
+                        }
                         $(me).removeClass('loading');
                     },
                     url: url
