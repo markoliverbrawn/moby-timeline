@@ -168,7 +168,7 @@
             
                 $(item.interval).each(function(i, v){
                     var $li = $('<li></li>')
-                        .css(cssProp2, (cssProp2=='left' ? _getDatePosition(v) - item.$div.offset().left : _getDatePosition(v) - item.$div.offset().top))
+                        .css(cssProp2, (cssProp2=='left' ? _getDatePosition(v) - item.$div.position().left : _getDatePosition(v) - item.$div.offset().top))
                         .html(_formatDate(v))
                         .appendTo($ul);
                     
@@ -521,7 +521,7 @@
 
                 if(periodStart >= timeScaleStart && periodStart < timeScaleEnd)
                 {
-                    pos = timescale.$div.offset()[cssProp] + ((periodStart-timeScaleStart) * scale);
+                    pos = timescale.$div.position()[cssProp] + ((periodStart-timeScaleStart) * scale);
                     return pos * _zoomFactor;
                 }	
             });
@@ -853,7 +853,7 @@
         {
             var $el = $(e.currentTarget);
             var $parent = $el.closest('main');
-            var eventLeft = $el.offset().left;
+            var eventLeft = $el.position().left;
             var right = $parent.width() < eventLeft + $el.find('h2').width();
             var bottom = $parent.height()/2 < $el.position().top;
             $el.removeClass('right').removeClass('bottom').toggleClass('active');
