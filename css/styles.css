@@ -2896,7 +2896,10 @@ div.timeline .event:hover {
 }
 div.timeline .event h2 {
   cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-shadow: 1px 1px 0px #000;
+  white-space: nowrap;
   width: 250px;
 }
 div.timeline .event > div {
@@ -2915,6 +2918,9 @@ div.timeline .event.key-event h2 {
 }
 div.timeline .event.active {
   z-index: 1003;
+}
+div.timeline .event.active h2 {
+  white-space: normal;
 }
 div.timeline .event.active > div {
   background: rgba(0, 0, 0, 0.95);

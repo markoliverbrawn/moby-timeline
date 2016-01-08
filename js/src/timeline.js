@@ -1132,14 +1132,14 @@
         function _scrollToDate(date)
         {
             var scrollTo;
-            if(settings.layoutMode==LAYOUT_VERTICAL)
+            if(_isVertical())
             {
-                scrollTo = (_$me.parent().width()/2) - _getDatePosition(date);
+                scrollTo = (_$me.parent().height()/2) - _getDatePosition(date);
                 _scroll(scrollTo);
             }
             else
             {
-                scrollTo = (_$me.parent().height()/2) - _getDatePosition(date);
+                scrollTo = (_$me.parent().width()/2) - _getDatePosition(date);
                 _scroll(scrollTo);
             }
             
