@@ -855,9 +855,8 @@
             var $parent = $el.closest('main');
             var eventLeft = $el.offset().left;
             var right = $parent.width() < eventLeft + $el.find('h2').width();
-            var bottom = $parent.height()/2 < $el.offset().top;
+            var bottom = $parent.height()/2 < $el.position().top;
             $el.removeClass('right').removeClass('bottom').toggleClass('active');
-            //_debug('('+$parent.width()+'+'+$parent.parent().width()+'-'+_$inner.scrollLeft()+')<'+$el.offset().left+'+'+$el.find('h2').width()+') = '+right);
             if(right)
             {
                 $el.addClass('right');
